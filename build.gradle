@@ -5,8 +5,8 @@ ext {
     bintrayName = 'activerecord'
 
     publishedGroupId = 'com.eddmash'
-    libraryName = 'querer'
-    artifact = 'querer'
+    libraryName = 'activerecord'
+    artifact = 'activerecord'
 
     libraryDescription = 'A simple set of helper methods to query for data on android sqlite database.'
 
