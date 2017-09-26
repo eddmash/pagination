@@ -6,12 +6,14 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
-package com.eddmash.querer;
+package com.eddmash.db;
 
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.util.Log;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -35,6 +37,7 @@ public class ActiveRecord {
 
     /**
      * REturn instance of SQLiteDatabase that the activerecord instance is using.
+     *
      * @return
      */
     public SQLiteDatabase getDb() {
@@ -51,6 +54,7 @@ public class ActiveRecord {
 
     /**
      * Returns an instance of the the activerecord class
+     *
      * @param database
      * @return
      */
@@ -114,6 +118,39 @@ public class ActiveRecord {
         if (queryCols == null) {
             queryCols = mycursor.getColumnNames();
         }
+        Log.e(getClass().getName(), "COLS :: " + Arrays.toString(queryCols));
+        List<Map> list = new ArrayList<>();
+        while (mycursor.moveToNext()) {
+            map = new HashMap();
+            for (String colName : queryCols) {
+
+                map.put(colName, mycursor.getString(mycursor.getColumnIndexOrThrow(colName)));
+            }
+            list.add(map);
+        }
+
+        mycursor.close();
+        return list;
+    }
+
+    /**
+     * Returns an list of maps, where the map represents each record in the database.
+     * <p>
+     * with keys of the map as the column name and values of the map as the values of the
+     * respective columns.
+     * <p>
+     * something like this:
+     * <p>
+     * [{id:1, username:ken, age:50}, {id:2, username:matt, age:70}]
+     *
+     * @param tableName
+     * @return
+     */
+    public List<Map> all(String tableName) {
+        Cursor mycursor = db.query(tableName, null, null, null, null, null, null, null);
+        HashMap map;
+
+        String queryCols[] = mycursor.getColumnNames();
         List<Map> list = new ArrayList<>();
         while (mycursor.moveToNext()) {
             map = new HashMap();

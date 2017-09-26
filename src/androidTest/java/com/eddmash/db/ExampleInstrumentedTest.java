@@ -1,4 +1,4 @@
-package com.eddmash.querer;
+package com.eddmash.db;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;
@@ -21,6 +21,6 @@ public class ExampleInstrumentedTest {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getTargetContext();
 
-        assertEquals("com.eddmash.querer.test", appContext.getPackageName());
+        assertEquals("com.eddmash.db.test", appContext.getPackageName());
     }
 }

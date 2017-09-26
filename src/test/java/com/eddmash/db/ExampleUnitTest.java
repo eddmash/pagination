@@ -1,4 +1,4 @@
-package com.eddmash.querer;
+package com.eddmash.db;
 
 import org.junit.Test;
 
