@@ -26,10 +26,12 @@ import java.util.Map;
  * @param <VH>
  */
 public abstract class BaseFiltarableAdapter<VH extends RecyclerView.ViewHolder>
-        extends RecyclerView.Adapter<VH> implements SqlPageableAdaptorInterface {
+        extends RecyclerView.Adapter<VH> implements SearchableAdaptorInterface {
 
     private AppCompatActivity activity;
     List<Map> mData;
+
+    private List<Map> filterdData;
 
     /**
      * @return the current dataset the filterableadapter is working on.
@@ -37,9 +39,6 @@ public abstract class BaseFiltarableAdapter<VH extends RecyclerView.ViewHolder>
     public List<Map> getData() {
         return filterdData;
     }
-
-    private List<Map> filterdData;
-    private int itemLayout;
 
     public BaseFiltarableAdapter(AppCompatActivity activity) {
         this.activity = activity;
@@ -59,11 +58,6 @@ public abstract class BaseFiltarableAdapter<VH extends RecyclerView.ViewHolder>
     }
 
     @Override
-    public void addAll(PaginatorInterface paginator) {
-        addAll(paginator.getData());
-    }
-
-    @Override
     public void add(Map data) {
         this.filterdData.add(data);
         notifyDataSetChanged();
@@ -76,7 +70,7 @@ public abstract class BaseFiltarableAdapter<VH extends RecyclerView.ViewHolder>
         for (Map data : records) {
             this.filterdData.add(data);
         }
-        notifyItemRangeInserted(size, records.size());
+//        notifyItemRangeInserted(size, records.size());
     }
 
     @Override
@@ -97,6 +91,8 @@ public abstract class BaseFiltarableAdapter<VH extends RecyclerView.ViewHolder>
         notifyDataSetChanged();
     }
 
+
+
     /**
      * Implement method to add logic to be used when searching for record(s) within the current
      * dataset  the filterableadapter is handling.
@@ -113,6 +109,5 @@ public abstract class BaseFiltarableAdapter<VH extends RecyclerView.ViewHolder>
      * @param hayStack   the records to search the term in
      */
     protected abstract List<Map> doFilter(String searchTerm, List<Map> hayStack);
-
 
 }
