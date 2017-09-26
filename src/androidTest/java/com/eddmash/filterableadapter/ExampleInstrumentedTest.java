@@ -1,4 +1,4 @@
-package com.eddmash.adapter;
+package com.eddmash.filterableadapter;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;
@@ -21,6 +21,6 @@ public class ExampleInstrumentedTest {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getTargetContext();
 
-        assertEquals("com.eddmash.adapter.test", appContext.getPackageName());
+        assertEquals("com.eddmash.filterableadapter.test", appContext.getPackageName());
     }
 }

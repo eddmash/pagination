@@ -1,6 +1,6 @@
-package com.eddmash.adapter;
+package com.eddmash.filterableadapter;
 /*
-* This file is part of the com.eddmash.adapter package.
+* This file is part of the com.eddmash.filterableadapter package.
 * 
 * (c) Eddilbert Macharia (http://eddmash.com)<edd.cowan@gmail.com>
 *
@@ -20,7 +20,7 @@ import java.util.Map;
 
 
 /**
- * An adapter whose data can filtered and also if used together with classes that implement
+ * An filterableadapter whose data can filtered and also if used together with classes that implement
  * PaginatorInterface can be paginated.
  *
  * @param <VH>
@@ -32,7 +32,7 @@ public abstract class BaseFiltarableAdapter<VH extends RecyclerView.ViewHolder>
     List<Map> mData;
 
     /**
-     * @return the current dataset the adapter is working on.
+     * @return the current dataset the filterableadapter is working on.
      */
     public List<Map> getData() {
         return filterdData;
@@ -99,7 +99,7 @@ public abstract class BaseFiltarableAdapter<VH extends RecyclerView.ViewHolder>
 
     /**
      * Implement method to add logic to be used when searching for record(s) within the current
-     * dataset  the adapter is handling.
+     * dataset  the filterableadapter is handling.
      * <p>
      * You just need to filter through the records in the haystack and return the new values
      * to display.

@@ -1,4 +1,4 @@
-package com.eddmash.adapter;
+package com.eddmash.filterableadapter;
 
 import org.junit.Test;
 

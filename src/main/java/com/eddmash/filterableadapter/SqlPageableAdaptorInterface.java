@@ -1,6 +1,6 @@
-package com.eddmash.adapter;
+package com.eddmash.filterableadapter;
 /*
-* This file is part of the com.eddmash.adapter package.
+* This file is part of the com.eddmash.filterableadapter package.
 * 
 * (c) Eddilbert Macharia (http://eddmash.com)<edd.cowan@gmail.com>
 *
