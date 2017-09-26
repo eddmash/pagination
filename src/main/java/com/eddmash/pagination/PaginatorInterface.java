@@ -14,7 +14,6 @@ import java.util.Map;
 public interface PaginatorInterface {
     void setPageSize(int pageSize);
 
-    void nextPage();
 
     List<Map> getData();
     /**
@@ -35,6 +34,11 @@ public interface PaginatorInterface {
     void OnNextPageLoad(boolean hasMorePages);
 
     void updateAdapter(List<Map> records);
+
+    /**
+     * start the process of loading the next page for us
+     */
+    void nextPage();
 
     /**
      * Invoked when a new list of records has been added to the current records.

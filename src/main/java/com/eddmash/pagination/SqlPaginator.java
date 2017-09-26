@@ -11,7 +11,7 @@ package com.eddmash.pagination;
 import android.os.AsyncTask;
 import android.util.Log;
 
-import com.eddmash.querer.ActiveRecord;
+import com.eddmash.db.ActiveRecord;
 
 import java.util.Arrays;
 import java.util.List;
@@ -33,7 +33,7 @@ public abstract class SqlPaginator extends ListPaginator {
         this._params = params;
 
         _totalRecords = activeRecord.getScalarInt("select count(*) from ("+sql+")", params);
-        Log.e(getClass().getName(), "COUNT TOATL "+_totalRecords);
+        Log.e(getClass().getName(), "COUNT TOTAL "+_totalRecords);
         if (_totalRecords > pageSize) {
            sql = sql+ " limit "+pageSize;
         }
@@ -64,7 +64,7 @@ public abstract class SqlPaginator extends ListPaginator {
             boolean hasMorePages = false;
             if (_totalRecords > pageSize) {
                 Double pageCount = Math.floor(_totalRecords / pageSize);
-                _pageCount = pageCount.intValue();
+                setPageCount(1+pageCount.intValue());
                 hasMorePages = true;
             }
             OnFirstPageLoad(hasMorePages);

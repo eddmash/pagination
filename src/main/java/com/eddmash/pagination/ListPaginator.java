@@ -21,7 +21,9 @@ public abstract class ListPaginator implements PaginatorInterface {
     protected int pageSize;
     private List _records = new ArrayList();
     protected List _paginatedRecords = new ArrayList();
-    protected int _pageCount;
+
+
+    private int _pageCount;
     protected String logTag = getClass().getName();
     public int newPageStartPoint;
     /**
@@ -30,7 +32,7 @@ public abstract class ListPaginator implements PaginatorInterface {
     private boolean populating = false;
     protected int _totalRecords;
 
-    ListPaginator() {
+    public ListPaginator() {
         pageSize = 20;
         currentPage = 1;
         _totalRecords = 0;
@@ -50,14 +52,14 @@ public abstract class ListPaginator implements PaginatorInterface {
         currentPage++;
         newPageStartPoint = (currentPage - 1) * pageSize;
         int last = pageSize + newPageStartPoint;
-        Log.e(logTag, "GETTIMG NEXT PAGE " + currentPage);
+        Log.e(logTag, "GETTING NEXT PAGE " + currentPage);
         int size = _totalRecords;
         if (size <= last) {
             last = _totalRecords;
             onLastPageLoad();
         }
 
-        //don't createFile another sync when we are currently populating.
+        //don't create another sync when we are currently populating.
         if (size >= newPageStartPoint && !populating) {
             OnNextPageLoad(last <= _records.size());
             new AddMoreTask().execute(newPageStartPoint, last);
@@ -92,6 +94,10 @@ public abstract class ListPaginator implements PaginatorInterface {
     @Override
     public int getPageCount() {
         return _pageCount;
+    }
+
+    public void setPageCount(int _pageCount) {
+        this._pageCount = _pageCount;
     }
 
     protected int getCurrentPage() {
