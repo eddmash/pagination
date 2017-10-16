@@ -83,8 +83,8 @@ public abstract class ListPaginator implements PaginatorInterface {
             _paginatedRecords = _records.subList(0, pageSize);
         }
         if (_totalRecords > pageSize) {
-
-            Double pageCount = Math.floor(_totalRecords / pageSize);
+            //add one to avoid getting page 0
+            Double pageCount = Math.ceil(_totalRecords / pageSize) + 1;
             _pageCount = pageCount.intValue();
             hasMorePages = true;
         }
