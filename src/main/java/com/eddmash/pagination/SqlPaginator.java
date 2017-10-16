@@ -63,7 +63,7 @@ public abstract class SqlPaginator extends ListPaginator {
             super.onPostExecute(aVoid);
             boolean hasMorePages = false;
             if (_totalRecords > pageSize) {
-                Double pageCount = Math.floor(_totalRecords / pageSize);
+                Double pageCount = Math.ceil(_totalRecords / pageSize);
                 setPageCount(1+pageCount.intValue());
                 hasMorePages = true;
             }

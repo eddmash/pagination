@@ -23,7 +23,7 @@ public abstract class ListPaginator implements PaginatorInterface {
     protected List _paginatedRecords = new ArrayList();
 
 
-    private int _pageCount;
+    private int _pageCount=1;
     protected String logTag = getClass().getName();
     public int newPageStartPoint;
     /**
@@ -73,7 +73,6 @@ public abstract class ListPaginator implements PaginatorInterface {
     }
 
     public void setData(List<Map> results) {
-        _pageCount = 1;
         Log.e(logTag, "SET DATA" + results.size());
         boolean hasMorePages = false;
         _records = results;
