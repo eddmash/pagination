@@ -73,6 +73,7 @@ public abstract class ListPaginator implements PaginatorInterface {
     }
 
     public void setData(List<Map> results) {
+        _pageCount = 1;
         Log.e(logTag, "SET DATA" + results.size());
         boolean hasMorePages = false;
         _records = results;
@@ -88,6 +89,7 @@ public abstract class ListPaginator implements PaginatorInterface {
             _pageCount = pageCount.intValue();
             hasMorePages = true;
         }
+
         OnFirstPageLoad(hasMorePages);
     }
 
