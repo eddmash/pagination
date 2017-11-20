@@ -1,6 +1,7 @@
 apply plugin: 'com.android.library'
 
 ext {
+    versionCode = 3
     bintrayRepo = 'maven'
     bintrayName = 'filterableadapter'
 
@@ -13,7 +14,7 @@ ext {
     siteUrl = 'https://github.com/eddmash/filterableadapter'
     gitUrl = 'https://github.com/eddmash/filterableadapter.git'
 
-    libraryVersion = "1.0.0"
+    libraryVersion = "1.0.${libraryVersion}"
 
     developerId = 'eddmash'
     developerName = 'Eddilbert Macharia'
@@ -30,7 +31,7 @@ android {
     defaultConfig {
         minSdkVersion 14
         targetSdkVersion 25
-        versionCode 1
+        versionCode project.versionCode
         versionName "${libraryVersion}"
 
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
@@ -49,12 +50,12 @@ dependencies {
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
-    compile project(':pagination')
+    compile 'com.eddmash:pagination:1.0.+'
     compile 'com.android.support:appcompat-v7:25.3.1'
     compile 'com.android.support:recyclerview-v7:25.3.1'
     testCompile 'junit:junit:4.12'
 }
 //Add these lines to publish library to bintray
 //Place it at the end of the file
-apply from: 'https://raw.githubusercontent.com/nuuneoi/JCenter/master/installv1.gradle'
-apply from: 'https://raw.githubusercontent.com/nuuneoi/JCenter/master/bintrayv1.gradle'
+//apply from: 'https://raw.githubusercontent.com/nuuneoi/JCenter/master/installv1.gradle'
+//apply from: 'https://raw.githubusercontent.com/nuuneoi/JCenter/master/bintrayv1.gradle'
