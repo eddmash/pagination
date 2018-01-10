@@ -57,7 +57,7 @@ public abstract class Paginator implements PaginatorInterface {
 
         //don't create another sync when we are currently populating.
         if (size >= newPageStartPoint && !populating) {
-            dataListener.preNextPageDataLoad(last <= _totalRecords);
+            dataListener.prePageDataLoad(last <= _totalRecords);
             new LoadDataTask().execute(newPageStartPoint, last);
         }
     }
@@ -97,7 +97,7 @@ public abstract class Paginator implements PaginatorInterface {
         @Override
         protected void onPostExecute(Void done) {
             populating = false;
-            dataListener.onDataLoaded(isLastPage);
+            dataListener.onDataLoaded(currentPage == 1, isLastPage);
         }
     }
 

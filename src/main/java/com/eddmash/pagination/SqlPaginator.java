@@ -15,7 +15,7 @@ import com.eddmash.db.ActiveRecord;
 import java.util.List;
 import java.util.Map;
 
-public abstract class SqlPaginator extends Paginator {
+public class SqlPaginator extends Paginator {
 
     private String _sql;
     private String[] _params;
