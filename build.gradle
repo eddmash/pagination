@@ -1,8 +1,30 @@
 apply plugin: 'com.android.library'
 
-apply plugin: 'com.github.dcendents.android-maven'
 
-group='com.github.eddmash.views'
+ext {
+    bintrayRepo = 'maven'
+    bintrayName = 'views'
+
+    publishedGroupId = 'com.eddmash'
+    libraryName = 'views'
+    artifact = 'views'
+
+    libraryDescription = 'A collection of Views.'
+
+    siteUrl = 'https://github.com/eddmash/android-views'
+    gitUrl = 'https://github.com/eddmash/android-views.git'
+
+    libraryVersion = "1.0.2"
+
+    developerId = 'eddmash'
+    developerName = 'Eddilbert Macharia'
+    developerEmail = 'edd.cowan@gmail.com'
+
+    licenseName = 'The Apache Software License, Version 2.0'
+    licenseUrl = 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+    allLicenses = ["Apache-2.0"]
+}
+
 android {
     compileSdkVersion 25
 
@@ -34,3 +56,8 @@ dependencies {
     compile 'com.android.support:design:25.4.0'
     testCompile 'junit:junit:4.12'
 }
+
+//Add these lines to publish library to bintray
+//Place it at the end of the file
+//apply from: 'https://raw.githubusercontent.com/nuuneoi/JCenter/master/installv1.gradle'
+//apply from: 'https://raw.githubusercontent.com/nuuneoi/JCenter/master/bintrayv1.gradle'
