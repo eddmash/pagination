@@ -14,7 +14,7 @@ ext {
     siteUrl = 'https://github.com/eddmash/android-views'
     gitUrl = 'https://github.com/eddmash/android-views.git'
 
-    libraryVersion = "1.0.2"
+    libraryVersion = "1.0.1"
 
     developerId = 'eddmash'
     developerName = 'Eddilbert Macharia'
@@ -32,7 +32,7 @@ android {
         minSdkVersion 14
         targetSdkVersion 25
         versionCode 1
-        versionName "1.0"
+        versionName "${libraryVersion}"
 
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
