@@ -12,16 +12,6 @@ import java.util.List;
 import java.util.Map;
 
 public interface DataListener {
-    /**
-     * Invoked when the very first list of records have been received.
-     *
-     * <p>
-     * This method should be run on the main ui thread. on AsyncTask this should be invoked on
-     * onPostExecute()
-     *
-     * @param hasMorePages indicate if there more pages to be shown.
-     */
-    void OnFirstPageDataLoaded(boolean hasMorePages);
 
     /**
      * Invoked when a new list of records has been added to the current records.
@@ -40,7 +30,6 @@ public interface DataListener {
      * @param hasMorePages
      */
     void preNextPageDataLoad(boolean hasMorePages);
-
 
 
     /**
