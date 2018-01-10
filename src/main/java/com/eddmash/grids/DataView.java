@@ -11,6 +11,7 @@ package com.eddmash.grids;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Color;
+import android.graphics.drawable.Drawable;
 import android.support.annotation.ColorInt;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
@@ -64,11 +65,12 @@ public class DataView extends LinearLayout {
 
     private Object ACTIONSLABEL = "Actions";
     private Map headers = new HashMap();
-    private List<Column> leftColumns = new ArrayList();
-    private List<Column> rightColumns = new ArrayList();
-    private ProgressBar topProgressBar;
+    private List<Column> leftColumns = new ArrayList<>();
+    private List<Column> rightColumns = new ArrayList<>();
+    private LinearLayout topProgressBar;
     private LinearLayout headerLayout;
     private TextView infoCell;
+    private List<View> toolbarViews = new ArrayList<>();
 
     public DataView(Context context) {
         this(context, null);
@@ -94,7 +96,32 @@ public class DataView extends LinearLayout {
         headerLayout = new LinearLayout(context);
         headerLayout.setLayoutParams(params);
         headerLayout.setOrientation(LinearLayout.VERTICAL);
+
+        topProgressBar = new LinearLayout(getContext());
+        topProgressBar.setOrientation(LinearLayout.VERTICAL);
+        topProgressBar.setGravity(Gravity.CENTER_HORIZONTAL);
+        topProgressBar.setLayoutParams(params);
+
+        ProgressBar progressBar = new ProgressBar(getContext());
+        progressBar.setIndeterminate(true);
+        progressBar.setLayoutParams(new LinearLayout.LayoutParams(
+                ViewGroup.LayoutParams.WRAP_CONTENT,
+                ViewGroup.LayoutParams.WRAP_CONTENT));
+        Drawable progressDrawable = progressBar.getIndeterminateDrawable().mutate();
+        progressDrawable.setColorFilter(Color.YELLOW, android.graphics.PorterDuff.Mode.SRC_IN);
+        progressBar.setIndeterminateDrawable(progressDrawable);
+        TextView message = new TextView(getContext());
+        message.setText("Loading initial page");
+        message.setTextColor(Color.YELLOW);
+        message.setLayoutParams(new LinearLayout.LayoutParams(
+                ViewGroup.LayoutParams.WRAP_CONTENT,
+                ViewGroup.LayoutParams.WRAP_CONTENT));
+        message.setGravity(Gravity.CENTER_HORIZONTAL);
+        topProgressBar.addView(progressBar);
+        topProgressBar.addView(message);
+
         styles(context, attrs);
+        addView(topProgressBar);
         addView(headerLayout);
         addView(contentLayout);
         addView(footerLayout);
@@ -120,6 +147,10 @@ public class DataView extends LinearLayout {
     public void setColumns(Map attributesLabel) {
         this.displayItems = attributesLabel;
         getColumns(); // this prepare the columns early enough
+    }
+
+    public void addToolbarView(View view) {
+        toolbarViews.add(view);
     }
 
     // =============== CONFIGURABLES =================================
@@ -261,31 +292,18 @@ public class DataView extends LinearLayout {
     // ========================== MAKE ROWS ===========================================
 
     protected void makeToolbarRow() {
+        // hide the progress bar
+        topProgressBar.setVisibility(View.GONE);
 
-        LinearLayout toolbarRow = new LinearLayout(getContext());
-        toolbarRow.setGravity(Gravity.RIGHT);
-        toolbarRow.addView(makeInfoCell());
-        toolbarRow.addView(makeSearchCell());
-        toolbarRow.addView(makeExportCell());
-        headerLayout.addView(toolbarRow);
-    }
+        if (toolbarViews.size() > 0) {
 
-    private View makeInfoCell() {
-        infoCell = new TextView(getContext());
-        return prepareCellView(infoCell, 1);
-    }
-
-    private View makeExportCell() {
-        Spinner spinner = new Spinner(getContext());
-        spinner.setAdapter(getAdapter());
-
-        return prepareCellView(spinner, .5);
-    }
-
-    private View makeSearchCell() {
-        EditText search = new EditText(getContext());
-        search.setHint("Search");
-        return prepareCellView(search, .5);
+            LinearLayout toolbarRow = new LinearLayout(getContext());
+            toolbarRow.setGravity(Gravity.RIGHT);
+            for (View view : toolbarViews) {
+                toolbarRow.addView(view);
+            }
+            headerLayout.addView(toolbarRow);
+        }
     }
 
     public ArrayAdapter<String> getAdapter() {
@@ -305,8 +323,6 @@ public class DataView extends LinearLayout {
         cols.addAll(leftColumns);
         cols.addAll(getColumns().values());
         cols.addAll(rightColumns);
-        topProgressBar = new ProgressBar(getContext());
-        topProgressBar.setIndeterminate(false);
 
         for (ColumnInterface item : cols) {
             if (item instanceof ActionColumn) {
@@ -321,7 +337,6 @@ public class DataView extends LinearLayout {
         }
         headerRow.setOrientation(LinearLayout.HORIZONTAL);
         headerRow.setBackgroundColor(headerColor);
-        makeToolbarRow();
         headerLayout.addView(makeContentRow(headerRow, true));
     }
 
@@ -469,8 +484,14 @@ public class DataView extends LinearLayout {
     }
 
     public void setPaginator(PaginatorInterface paginator) {
+        setup(paginator);
+    }
+
+    private void setup(PaginatorInterface paginator) {
+
         paginator.setPageSize(pageSize);
         this.paginator = paginator;
+        topProgressBar.setVisibility(View.VISIBLE);
     }
 
     public Map<String, ColumnInterface> getColumns() {
@@ -502,6 +523,7 @@ public class DataView extends LinearLayout {
         return displayItems;
     }
 
+
     // ======================  Data Listener =================================
 
     public class DataListener implements DataListenerInterface {
@@ -518,11 +540,11 @@ public class DataView extends LinearLayout {
             log(" FIRST PAGE DATA LOADED " + paginator.getData());
             data = paginator.getData();
             reset();
+            makeToolbarRow();
             makeHeaderRow();
             makeDataRows();
             makeFooterRow();
             nextBtn(hasMorePages);
-            info();
         }
 
         private void nextBtn(boolean hasMorePages) {
@@ -553,15 +575,9 @@ public class DataView extends LinearLayout {
             makeDataRows(newData);
             progressBar.setVisibility(View.GONE);
             getNextPageBtn().setText(getCurrentPageString());
-            info();
 
         }
 
-        protected void info() {
-            infoCell.setText(String.format("Showing %s of %s records",
-                    paginator.getData().size(),
-                    ((ListPaginator) paginator).getTotalRecords()));
-        }
     }
 
     private void reset() {
