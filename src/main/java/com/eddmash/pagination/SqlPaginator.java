@@ -8,66 +8,39 @@ package com.eddmash.pagination;
 * file that was distributed with this source code.
 */
 
-import android.os.AsyncTask;
 import android.util.Log;
 
 import com.eddmash.db.ActiveRecord;
 
-import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
-public abstract class SqlPaginator extends ListPaginator {
+public abstract class SqlPaginator extends Paginator {
 
     private String _sql;
     private String[] _params;
     private ActiveRecord activeRecord;
 
-    public SqlPaginator(ActiveRecord activeRecord){
+    public SqlPaginator(DataListener dataListener, ActiveRecord activeRecord) {
+        super(dataListener);
         this.activeRecord = activeRecord;
     }
 
     public void query(String sql, String[] params) {
-        this._sql = sql;
-        Log.e("LERER", Arrays.toString(params));
-        this._params = params;
+        _sql = sql;
+        _params = params;
+        _currentRecordsCounter = pageSize;
+        _totalRecords = activeRecord.getScalarInt("select count(*) from (" + sql + ")", params);
+        Log.e(getClass().getName(), "COUNT TOTAL " + _totalRecords);
 
-        _totalRecords = activeRecord.getScalarInt("select count(*) from ("+sql+")", params);
-        Log.e(getClass().getName(), "COUNT TOTAL "+_totalRecords);
-        if (_totalRecords > pageSize) {
-           sql = sql+ " limit "+pageSize;
-        }
-
-        new LoadTask().execute(sql);
+        new LoadDataTask().execute(0, pageSize);
     }
 
     @Override
-    protected List<Map> getNextPageRecords(int newPageStartPoint, int last) {
-        Log.e("LMITI", newPageStartPoint+" to "+last);
-        String sql = _sql+ " limit "+pageSize+" offset "+ newPageStartPoint;
+    protected List<Map> getNextPageRecords(int startPoint, int endPoint) {
+        String sql = _sql + " limit " + pageSize + " offset " + startPoint;
+        Log.e(getClass().getSimpleName(), startPoint + " to " + endPoint
+                + " (" + sql + ")");
         return activeRecord.find(sql, _params);
-    }
-
-    private class LoadTask extends AsyncTask<String, Void, Void>{
-
-        @Override
-        protected Void doInBackground(String... params) {
-            Log.e("POLOPO", params[0]+" "+Arrays.toString(_params));
-            _paginatedRecords = activeRecord.find(params[0], _params);
-            Log.e(getClass().getName(), "DATA "+ _paginatedRecords);
-            return null;
-        }
-
-        @Override
-        protected void onPostExecute(Void aVoid) {
-            super.onPostExecute(aVoid);
-            boolean hasMorePages = false;
-            if (_totalRecords > pageSize) {
-                Double pageCount = Math.ceil(_totalRecords / pageSize);
-                setPageCount(1+pageCount.intValue());
-                hasMorePages = true;
-            }
-            OnFirstPageLoad(hasMorePages);
-        }
     }
 }
