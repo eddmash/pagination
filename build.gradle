@@ -3,16 +3,16 @@ apply plugin: 'com.android.library'
 ext {
     versionCode = 2
     bintrayRepo = 'maven'
-    bintrayName = 'android-form'
+    bintrayName = 'android-grids'
 
     publishedGroupId = 'com.eddmash'
-    libraryName = 'android-form'
-    artifact = 'android-form'
+    libraryName = 'android-grids'
+    artifact = 'android-grids'
 
-    libraryDescription = 'A collection of Views.'
+    libraryDescription = 'Data display grids.'
 
-    siteUrl = 'https://github.com/eddmash/android-form'
-    gitUrl = 'https://github.com/eddmash/android-form.git'
+    siteUrl = 'https://github.com/eddmash/android-grids.git'
+    gitUrl = 'https://github.com/eddmash/android-grids.git'
 
     libraryVersion = "1.0.${versionCode}"
 
