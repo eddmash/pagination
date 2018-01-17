@@ -21,10 +21,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
-import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.eddmash.db.ActiveRecord;
@@ -32,8 +30,9 @@ import com.eddmash.grids.columns.ActionColumn;
 import com.eddmash.grids.columns.Column;
 import com.eddmash.grids.columns.ColumnInterface;
 import com.eddmash.grids.columns.DataColumn;
-import com.eddmash.grids.listener.DataListenerInterface;
+import com.eddmash.pagination.DataListener;
 import com.eddmash.pagination.ListPaginator;
+import com.eddmash.pagination.Paginator;
 import com.eddmash.pagination.PaginatorInterface;
 import com.eddmash.pagination.SqlPaginator;
 
@@ -58,15 +57,15 @@ public class DataView extends LinearLayout {
     private int headerColor;
     private int stripColor;
 
-    private DataListenerInterface dataListener;
+    private DataViewListener dataListener;
     private LinearLayout contentLayout;
     private ProgressBar progressBar;
     private int totalRowsAdded = 0;
 
     private Object ACTIONSLABEL = "Actions";
-    private Map headers = new HashMap();
-    private List<Column> leftColumns = new ArrayList<>();
-    private List<Column> rightColumns = new ArrayList<>();
+    private Map headers;
+    private List<Column> leftColumns;
+    private List<Column> rightColumns;
     private LinearLayout topProgressBar;
     private LinearLayout headerLayout;
     private TextView infoCell;
@@ -83,6 +82,9 @@ public class DataView extends LinearLayout {
     public DataView(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         data = new ArrayList<>();
+        headers = new HashMap();
+        rightColumns = new ArrayList<>();
+        leftColumns = new ArrayList<>();
         LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
                 ViewGroup.LayoutParams.MATCH_PARENT,
                 ViewGroup.LayoutParams.WRAP_CONTENT);
@@ -145,6 +147,11 @@ public class DataView extends LinearLayout {
     }
 
     public void setColumns(Map attributesLabel) {
+
+        data = new ArrayList<>();
+        headers = new HashMap();
+        rightColumns = new ArrayList<>();
+        leftColumns = new ArrayList<>();
         this.displayItems = attributesLabel;
         getColumns(); // this prepare the columns early enough
     }
@@ -239,7 +246,7 @@ public class DataView extends LinearLayout {
             nextPageBtn.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    paginator.nextPage();
+                    paginator.fetchNextPageData();
 
                 }
             });
@@ -278,12 +285,12 @@ public class DataView extends LinearLayout {
     }
 
     protected String getCurrentPageString() {
-        return "Show More " + ((ListPaginator) paginator).getCurrentPageString();
+        return "Show More " + ((Paginator) paginator).getCurrentPageString();
     }
 
-    protected DataListenerInterface getDataListener() {
+    protected DataListener getDataListener() {
         if (dataListener == null) {
-            dataListener = new DataListener();
+            dataListener = new DataViewListener();
         }
         return dataListener;
     }
@@ -315,7 +322,7 @@ public class DataView extends LinearLayout {
     }
 
     protected void makeHeaderRow() {
-
+        headerLayout.removeAllViews();
         LinearLayout headerRow = new LinearLayout(getContext());
         boolean hasActions = false;
 
@@ -346,13 +353,16 @@ public class DataView extends LinearLayout {
     }
 
     protected void makeDataRows() {
+
         makeDataRows(data);
     }
 
     private void makeDataRows(List<Map> dataItems) {
         LinearLayout actionLayout;
+        LinearLayout dataRow;
+
         for (Map datum : dataItems) {
-            LinearLayout dataRow = new LinearLayout(getContext());
+            dataRow = new LinearLayout(getContext());
 
             List<ActionColumn> actionColumns = new ArrayList<>();
 
@@ -383,10 +393,16 @@ public class DataView extends LinearLayout {
                 dataRow.addView(prepareCellView(actionLayout, getWeight(ACTIONSLABEL)));
             }
             dataRow.setOrientation(LinearLayout.HORIZONTAL);
+
             contentLayout.addView(makeContentRow(dataRow, false));
             totalRowsAdded++;
 
         }
+        String text = String.format("Found %s of %s", data.size(), paginator.getTotalRecords());
+        if (data.isEmpty()) {
+            text = " No data to display";
+        }
+        contentLayout.addView(makeContentRow(prepareCellView(text, 1), false));
     }
 
     protected void makeFooterRow() {
@@ -418,73 +434,33 @@ public class DataView extends LinearLayout {
     // ================== SET DATA ==================================
 
     public void setData(final List<Map> data) {
-        final ListPaginator paginator = new ListPaginator() {
-            @Override
-            public void onLastPageLoad() {
-                getDataListener().onLastPageLoaded();
-            }
+        final ListPaginator pager = new ListPaginator(getDataListener());
 
-            @Override
-            public void OnFirstPageLoad(boolean hasMorePages) {
-                getDataListener().onFirstPageLoaded(hasMorePages);
+        setPaginator(pager, new LazyResolver() {
+            public void resolve() {
+                pager.setData(data);
             }
-
-            @Override
-            public void OnNextPageLoad(boolean hasMorePages) {
-                getDataListener().preNextPageLoading(hasMorePages);
-            }
-
-            @Override
-            public void updateAdapter(List<Map> records) {
-                getDataListener().dataUpdate(records);
-            }
-
-            @Override
-            public void onDoneAddingRecords() {
-                getDataListener().onDoneAddingRecords();
-            }
-        };
-        setPaginator(paginator);
-        paginator.setData(data);
+        });
 
     }
 
     public void setQuery(ActiveRecord activeRecord,
                          final String sql,
                          final String[] params) {
-        final SqlPaginator paginator = new SqlPaginator(activeRecord) {
-            @Override
-            public void onLastPageLoad() {
-                getDataListener().onLastPageLoaded();
-            }
+        final SqlPaginator pager = new SqlPaginator(getDataListener(), activeRecord);
 
-            @Override
-            public void OnFirstPageLoad(boolean hasMorePages) {
-                getDataListener().onFirstPageLoaded(hasMorePages);
+        setPaginator(pager, new LazyResolver() {
+            public void resolve() {
+                pager.query(sql, params);
             }
+        });
 
-            @Override
-            public void OnNextPageLoad(boolean hasMorePages) {
-                getDataListener().preNextPageLoading(hasMorePages);
-            }
-
-            @Override
-            public void updateAdapter(List<Map> records) {
-                getDataListener().dataUpdate(records);
-            }
-
-            @Override
-            public void onDoneAddingRecords() {
-                getDataListener().onDoneAddingRecords();
-            }
-        };
-        setPaginator(paginator);
-
-        paginator.query(sql, params);
     }
 
-    public void setPaginator(PaginatorInterface paginator) {
+    public void setPaginator(PaginatorInterface paginator, LazyResolver lazyResolver) {
+        data.clear();
         setup(paginator);
+        lazyResolver.resolve();
     }
 
     private void setup(PaginatorInterface paginator) {
@@ -526,41 +502,43 @@ public class DataView extends LinearLayout {
 
     // ======================  Data Listener =================================
 
-    public class DataListener implements DataListenerInterface {
+    public class DataViewListener implements DataListener {
         private List<Map> newData;
 
         @Override
-        public void onLastPageLoaded() {
-
-            getNextPageBtn().setVisibility(View.GONE);
-        }
-
-        @Override
-        public void onFirstPageLoaded(boolean hasMorePages) {
-            log(" FIRST PAGE DATA LOADED " + paginator.getData());
-            data = paginator.getData();
+        public void onFirstPageDataLoaded(boolean hasMorePages) {
+            Log.e(getClass().getSimpleName(), "IS FIRST PAGE");
             reset();
+            nextBtn(hasMorePages);
             makeToolbarRow();
             makeHeaderRow();
             makeDataRows();
             makeFooterRow();
-            nextBtn(hasMorePages);
-        }
-
-        private void nextBtn(boolean hasMorePages) {
-            if (hasMorePages) {
-                getNextPageBtn().setText(getCurrentPageString());
-                getNextPageBtn().setVisibility(View.VISIBLE);
-            } else {
-                getNextPageBtn().setVisibility(View.GONE);
-                progressBar.setVisibility(View.GONE);
-            }
         }
 
         @Override
-        public void preNextPageLoading(boolean hasMorePages) {
-            nextPageBtn.setText("..loading");
+        public void onLastPageDataLoaded() {
+            Log.e(getClass().getSimpleName(), "IS LAST PAGE");
+            updateDataRows();
+            nextBtn(false);
+        }
+
+        @Override
+        public void onNextPageDataLoaded() {
+            nextBtn(true);
+            updateDataRows();
+        }
+
+        private void updateDataRows() {
+            makeDataRows(newData);
+        }
+
+        @Override
+        public void preDataLoad(boolean hasMorePages) {
+
             progressBar.setVisibility(View.VISIBLE);
+            getNextPageBtn().setVisibility(View.VISIBLE);
+            getNextPageBtn().setText("...loading");
         }
 
         @Override
@@ -570,14 +548,16 @@ public class DataView extends LinearLayout {
             data.addAll(newData);
         }
 
-        @Override
-        public void onDoneAddingRecords() {
-            makeDataRows(newData);
-            progressBar.setVisibility(View.GONE);
-            getNextPageBtn().setText(getCurrentPageString());
-
+        private void nextBtn(boolean hasMorePages) {
+            if (progressBar != null) {
+                progressBar.setVisibility(View.GONE);
+            }
+            if (hasMorePages) {
+                getNextPageBtn().setText(getCurrentPageString());
+            } else {
+                getNextPageBtn().setVisibility(View.GONE);
+            }
         }
-
     }
 
     private void reset() {
@@ -585,4 +565,7 @@ public class DataView extends LinearLayout {
         getFooterLayout().removeAllViews();
     }
 
+    private abstract class LazyResolver {
+        public abstract void resolve();
+    }
 }
