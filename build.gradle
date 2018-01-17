@@ -3,16 +3,16 @@ apply plugin: 'com.android.library'
 ext {
     versionCode = 2
     bintrayRepo = 'maven'
-    bintrayName = 'android-views'
+    bintrayName = 'android-grids'
 
     publishedGroupId = 'com.eddmash'
-    libraryName = 'android-views'
-    artifact = 'android-views'
+    libraryName = 'android-grids'
+    artifact = 'android-grids'
 
-    libraryDescription = 'A set of custom views.'
+    libraryDescription = 'Data display grids.'
 
-    siteUrl = 'https://github.com/eddmash/android-views'
-    gitUrl = 'https://github.com/eddmash/android-views.git'
+    siteUrl = 'https://github.com/eddmash/android-grids.git'
+    gitUrl = 'https://github.com/eddmash/android-grids.git'
 
     libraryVersion = "1.0.${versionCode}"
 
