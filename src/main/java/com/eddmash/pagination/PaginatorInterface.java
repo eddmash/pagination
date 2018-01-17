@@ -21,4 +21,6 @@ public interface PaginatorInterface {
 
 
     int getPageCount();
+
+    int getTotalRecords();
 }

@@ -45,20 +45,34 @@ public abstract class Paginator implements PaginatorInterface {
 
     @Override
     public void fetchNextPageData() {
-        currentPage++;
-        newPageStartPoint = (currentPage - 1) * pageSize;
-        int last = pageSize + newPageStartPoint;
-        Log.e(logTag, "GETTING NEXT PAGE " + currentPage);
-        int size = _totalRecords;
-        if (size <= last) {
-            last = _totalRecords;
-            isLastPage = true;
-        }
+        if (!populating && !isLastPage) {
+            currentPage++;
+            newPageStartPoint = (currentPage - 1) * pageSize;
+            int last = pageSize + newPageStartPoint;
+            int size = _totalRecords;
 
-        //don't create another sync when we are currently populating.
-        if (size >= newPageStartPoint && !populating) {
-            dataListener.prePageDataLoad(last <= _totalRecords);
-            new LoadDataTask().execute(newPageStartPoint, last);
+            updatePageCount();
+
+            if (size <= last) {
+                last = _totalRecords;
+                isLastPage = true;
+            }
+
+            Log.e(logTag, "GETTING NEXT PAGE " + currentPage + " isLastPage " + isLastPage);
+
+            dataListener.preDataLoad(last <= _totalRecords);
+            //don't create another sync when we are currently populating.
+            if (size >= newPageStartPoint) {
+                new LoadDataTask().execute(newPageStartPoint, last);
+            }
+        }
+    }
+
+    private void updatePageCount() {
+        if (_totalRecords > pageSize) {
+            //add one to avoid getting page 0
+            Double pageCount = Math.ceil(_totalRecords / pageSize) + 1;
+            _pageCount = pageCount.intValue();
         }
     }
 
@@ -97,7 +111,17 @@ public abstract class Paginator implements PaginatorInterface {
         @Override
         protected void onPostExecute(Void done) {
             populating = false;
-            dataListener.onDataLoaded(currentPage == 1, isLastPage);
+            if (isLastPage) {
+                dataListener.onLastPageDataLoaded();
+            }
+
+            if (currentPage == 1) {
+                updatePageCount();
+                dataListener.onFirstPageDataLoaded(_currentRecordsCounter < _totalRecords);
+            }
+            if (currentPage != 1 && !isLastPage) {
+                dataListener.onNextPageDataLoaded();
+            }
         }
     }
 

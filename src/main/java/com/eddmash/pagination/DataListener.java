@@ -19,18 +19,15 @@ public interface DataListener {
      * <p>
      * This method should be run on the main ui thread. on AsyncTask this should be invoked on
      * onPostExecute()
-     *
-     * @param isFirstPage true only if the data that has been loaded is the last page
-     * @param isLastPage true only if the data that has been loaded is the last page
      */
-    void onDataLoaded(boolean isFirstPage, boolean isLastPage);
+    void onNextPageDataLoaded();
 
     /**
      * Invoked before the next page is loaded.
      *
      * @param hasMorePages
      */
-    void prePageDataLoad(boolean hasMorePages);
+    void preDataLoad(boolean hasMorePages);
 
 
     /**
@@ -42,4 +39,8 @@ public interface DataListener {
      * @param records
      */
     void dataUpdate(List<Map> records);
+
+    void onLastPageDataLoaded();
+
+    void onFirstPageDataLoaded(boolean hasMorePages);
 }
