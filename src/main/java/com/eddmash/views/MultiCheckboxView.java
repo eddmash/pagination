@@ -11,6 +11,7 @@ package com.eddmash.views;
 import android.content.Context;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 
@@ -41,14 +42,16 @@ public class MultiCheckboxView extends CollectionView<CheckBox> {
 
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if (isChecked){
+                if (isChecked) {
                     checked.add(checkBox);
-                }else {
-                    if (checked.contains(checkBox)){
+                } else {
+                    if (checked.contains(checkBox)) {
                         checked.remove(checkBox);
                     }
                 }
-                mOnCheckedChangeListener.onCheckedChanged(buttonView, isChecked);
+                if (mOnCheckedChangeListener != null) {
+                    mOnCheckedChangeListener.onCheckedChanged(buttonView, isChecked);
+                }
             }
         });
     }
@@ -56,6 +59,18 @@ public class MultiCheckboxView extends CollectionView<CheckBox> {
     @Override
     public List<CheckBox> getValue() {
         return checked;
+    }
+
+    public void setValue(Object data) {
+        List checkedData = (List) data;
+        CheckBox checkBox;
+        for (int i = 0; i < getChildCount(); i++) {
+            checkBox = (CheckBox) getChildAt(i);
+
+            if (checkedData.contains(checkBox.getText())) {
+                checkBox.setChecked(true);
+            }
+        }
     }
 
     /**
@@ -68,7 +83,27 @@ public class MultiCheckboxView extends CollectionView<CheckBox> {
         mOnCheckedChangeListener = listener;
     }
 
-    public interface OnCheckedChangeListener{
+    protected void addEntries(CharSequence[] entries) {
+        CheckBox view;
+        for (CharSequence entry : entries) {
+            view = new CheckBox(getContext());
+            view.setText(entry);
+            addView(view);
+        }
+    }
+
+    public void addEntries(List data) {
+        CheckBox view;
+        for (Object datum : data) {
+
+            view = new CheckBox(getContext());
+            view.setText(String.valueOf(datum));
+            view.setTag(datum);
+            addView(view);
+        }
+    }
+
+    public interface OnCheckedChangeListener {
 
         /**
          * Called when the checked state of a compound button has changed.

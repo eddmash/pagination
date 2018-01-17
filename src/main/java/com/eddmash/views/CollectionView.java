@@ -22,7 +22,8 @@ import java.util.List;
 abstract public class CollectionView<T> extends ViewGroup {
 
     private int columns;
-    private int rowPadding = 10;;
+    private int rowPadding = 10;
+    ;
 
     private void init(Context context) {
     }
@@ -57,14 +58,7 @@ abstract public class CollectionView<T> extends ViewGroup {
         }
     }
 
-    private void addEntries(CharSequence[] entries) {
-        CheckBox view;
-        for (CharSequence entry : entries) {
-            view = new CheckBox(getContext());
-            view.setText(entry);
-            addView(view);
-        }
-    }
+    protected abstract void addEntries(CharSequence[] entries);
 
     @Override
     protected void onLayout(boolean changed, int l, int t, int r, int b) {
@@ -182,4 +176,6 @@ abstract public class CollectionView<T> extends ViewGroup {
     }
 
     public abstract List<T> getValue();
+
+    public abstract void setValue(Object data);
 }
