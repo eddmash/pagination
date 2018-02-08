@@ -1,1 +1,1 @@
-include ':app', ':android-form'
+include ':app', ':android-form',':android-pagination',':android-validation',':android-activerecord'
