@@ -1,2 +1,2 @@
 include ':app', ':android-form',':android-pagination',':android-validation',
-        ':android-activerecord', ':android-views', ':android-grids'
+        ':android-activerecord'
