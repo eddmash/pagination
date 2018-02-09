@@ -53,8 +53,8 @@ dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
     implementation 'com.android.support:appcompat-v7:25.4.0'
-    implementation 'com.eddmash:pagination:1.0.8'
-//    implementation project(':pagination')
+//    implementation 'com.eddmash:pagination:1.0.8'
+    implementation project(':android-pagination')
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.1'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'

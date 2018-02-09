@@ -68,7 +68,7 @@ public class DataView extends LinearLayout {
     private List<Column> rightColumns;
     private LinearLayout topProgressBar;
     private LinearLayout headerLayout;
-    private TextView infoCell;
+    private View infoBar;
     private List<View> toolbarViews = new ArrayList<>();
 
     public DataView(Context context) {
@@ -133,6 +133,8 @@ public class DataView extends LinearLayout {
     // =============== COLUMNS =================================
 
     /**
+     * Add extra columns to the dataview
+     *
      * @param col
      * @param position true to add column at the beginning, false to add to the right
      */
@@ -146,6 +148,13 @@ public class DataView extends LinearLayout {
 
     }
 
+    /**
+     * Determine how and which columns of your data will be displayed by passing them here.
+     * <p>
+     * This overrides the default implementation of using all the columns in you data.
+     *
+     * @param attributesLabel
+     */
     public void setColumns(Map attributesLabel) {
 
         data = new ArrayList<>();
@@ -398,15 +407,25 @@ public class DataView extends LinearLayout {
             totalRowsAdded++;
 
         }
+        updateStatsBar();
+    }
+
+    private void updateStatsBar() {
         String text = String.format("Found %s of %s", data.size(), paginator.getTotalRecords());
         if (data.isEmpty()) {
             text = " No data to display";
         }
-        contentLayout.addView(makeContentRow(prepareCellView(text, 1), false));
+
+        if (infoBar == null) {
+            infoBar = makeContentRow(prepareCellView(text, 1), false);
+
+            footerLayout.addView(infoBar);
+        }
+        ((TextView) infoBar).setText(text);
     }
 
     protected void makeFooterRow() {
-
+        footerLayout.removeAllViews();
         ViewGroup.LayoutParams params = new ViewGroup.LayoutParams(
                 ViewGroup.LayoutParams.WRAP_CONTENT,
                 ViewGroup.LayoutParams.WRAP_CONTENT);
@@ -427,7 +446,7 @@ public class DataView extends LinearLayout {
         footerRow.addView(progressBar);
         footerRow.addView(getNextPageBtn());
 
-        addView(footerRow);
+        footerLayout.addView(footerRow);
     }
 
 
@@ -447,7 +466,7 @@ public class DataView extends LinearLayout {
     public void setQuery(ActiveRecord activeRecord,
                          final String sql,
                          final String[] params) {
-        final SqlPaginator pager = new SqlPaginator(getDataListener(), activeRecord);
+        final SqlPaginator pager = new SqlPaginator(getDataListener(), activeRecord.getDb());
 
         setPaginator(pager, new LazyResolver() {
             public void resolve() {
