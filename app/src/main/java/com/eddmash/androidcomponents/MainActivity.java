@@ -1,5 +1,6 @@
 package com.eddmash.androidcomponents;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -46,15 +47,7 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
-
+        // get views
         List<ValueInterface> genders = new ArrayList<>();
         genders.add(new SimpleValue(" ", " "));
         genders.add(new SimpleValue("1", "Male"));
@@ -89,12 +82,14 @@ public class MainActivity extends AppCompatActivity {
         errorspace = findViewById(R.id.errorspace);
         errorspace.setVisibility(View.GONE);
 
+        // create form
         form = new BasicForm();
         form.addField("gender", genderSpinner);
         form.addField("phonenumber", phoneNumber);
         form.addField("firstname", firstName);
         form.addField("terms", termsCheckbox);
 
+        // create validation checks
         form.addCheck(
                 new NotEmptyCheck(genderSpinner,
                         getString(R.string.not_blank, "Gender")));
@@ -108,14 +103,17 @@ public class MainActivity extends AppCompatActivity {
         form.addCheck(new NotEmptyCheck(firstName,
                 getString(R.string.not_blank, "Firstname")));
 
+        // populate form with dummy data
         DummyDataPopulator dataPopulator = new DummyDataPopulator();
         try {
             dataPopulator.setFieldProvider("phonenumber",
-                    new TelephoneProvider(dataPopulator,"(+###) ### ### ###"));
+                    new TelephoneProvider(dataPopulator, "(+###) ### ### ###"));
             dataPopulator.populate(form);
         } catch (FormException e) {
             e.printStackTrace();
         }
+
+        // run validations on click
         saveBtn = findViewById(R.id.savebtn);
         saveBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -130,6 +128,22 @@ public class MainActivity extends AppCompatActivity {
                 } else {
                     showErrorsAtTheTop();
                 }
+            }
+        });
+
+
+        Button backBtn = (Button) findViewById(R.id.back_to_main);
+        backBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(MainActivity.this, PaginationActivity.class));
+            }
+        });
+        Button grid_example = (Button) findViewById(R.id.grid_example);
+        grid_example.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(MainActivity.this, GridExampleActivity.class));
             }
         });
     }

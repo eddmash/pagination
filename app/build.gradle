@@ -29,5 +29,7 @@ dependencies {
 //    implementation project(':android-activerecord')
     implementation project(':android-validation')
     implementation project(':android-form')
-//    implementation project(':android-pagination')
+    implementation project(':android-pagination')
+    implementation project(':android-adapter')
+    implementation project(':android-grids')
 }

@@ -14,7 +14,9 @@ import android.widget.Spinner;
 import android.widget.TextView;
 
 /**
- * Use this when you want to perform lazy execution of validations.
+ * This is the base class most of the validation Checks that relate to a single view.
+ * <p>
+ * {@link CheckCompound } if you like to validate multiple checks as one unit.
  */
 public abstract class CheckSingle implements CheckInterface {
 

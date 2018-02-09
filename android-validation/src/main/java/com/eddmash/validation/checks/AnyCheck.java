@@ -9,12 +9,11 @@ package com.eddmash.validation.checks;
 */
 
 /**
+ * This is an implementation of {@link CheckCompound}.
+ * <p>
  * Checks if at least one of the checks passed validation.
- *
- * NOTE::
- *
+ * <p>
  * If the no checks are provided i.e. checkList is empty, validation will always fail.
- *
  */
 public class AnyCheck extends CheckCompound {
 

@@ -5,6 +5,34 @@
     <string name="phone_number">Phone number</string>
     <string name="save_btn">Save</string>
     <string name="not_blank">%s cannot be blank</string>
-    <string name="basicformexample">Basic form example</string>
+    <string name="basicformexample">Basic form and Faker example</string>
     <string name="acceptterms">Accept terms</string>
+    <string name="title_activity_pagination">PaginationActivity</string>
+
+    <string name="title_activity_main">MainActivity</string>
+    <string name="nextPageBtn">Load More</string>
+    <string name="coffee_name">Coffee Name</string>
+    <string name="coffee_price">Price</string>
+    <string name="sql_based">Using SQL adapter and paginator</string>
+    <string name="title_activity_list_based">ListBasedActivity</string>
+    <string name="list_based">View List Based</string>
+    <string name="last_name">Lastname</string>
+    <string name="commission_rate">Comission rate</string>
+    <string name="title_activity_add_coffee">AddCoffeeActivity</string>
+    <string name="btn_submit">Submit</string>
+    <string name="saved_successfully">Save successfully</string>
+    <string name="item_save_successfully">%errorMsg was successfully saved</string>
+    <string name="add_coffee">Add Coffee</string>
+    <string name="ok">OK</string>
+    <string name="add_coffee_header">Create new coffee</string>
+    <string name="edit_dialog_title">Edit form</string>
+    <string name="update_btn">Update</string>
+    <string name="btn_edit">Edit</string>
+    <string name="sql_list_based">List based pagination</string>
+    <string name="back_to_main">Back To Main</string>
+    <string name="actions">Actions</string>
+    <string name="pagination_adapter">Go to Pagination and FilterableAdapter Example</string>
+    <string name="title_activity_grid_example">GridExampleActivity</string>
+    <string name="grid_example">Go to Grid Example</string>
+    <string name="grid_example_title">Data Grid Example</string>
 </resources>
