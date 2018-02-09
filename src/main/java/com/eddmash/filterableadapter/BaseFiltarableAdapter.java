@@ -12,15 +12,14 @@ package com.eddmash.filterableadapter;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
 
-import com.eddmash.pagination.PaginatorInterface;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
 
 /**
- * An filterableadapter whose data can filtered and also if used together with classes that implement
+ * An filterableadapter whose data can filtered and also if used together with classes that
+ * implement
  * PaginatorInterface can be paginated.
  *
  * @param <VH>
@@ -65,12 +64,7 @@ public abstract class BaseFiltarableAdapter<VH extends RecyclerView.ViewHolder>
 
     @Override
     public void update(List<Map> maps) {
-        List<Map> records = new ArrayList<>(maps);
-        int size = this.filterdData.size();
-        for (Map data : records) {
-            this.filterdData.add(data);
-        }
-//        notifyItemRangeInserted(size, records.size());
+        filterdData.addAll(new ArrayList<>(maps));
     }
 
     @Override
@@ -92,7 +86,6 @@ public abstract class BaseFiltarableAdapter<VH extends RecyclerView.ViewHolder>
     }
 
 
-
     /**
      * Implement method to add logic to be used when searching for record(s) within the current
      * dataset  the filterableadapter is handling.
@@ -100,8 +93,8 @@ public abstract class BaseFiltarableAdapter<VH extends RecyclerView.ViewHolder>
      * You just need to filter through the records in the haystack and return the new values
      * to display.
      * <p>
-     * NB::If you wish to perform searched that hit the database consider using the PaginatorInterface
-     * together with concrete implementations of this class
+     * NB::If you wish to perform searched that hit the database consider using the
+     * PaginatorInterface
      * <p>
      * return the haystack as is if no filtering is done.
      *
