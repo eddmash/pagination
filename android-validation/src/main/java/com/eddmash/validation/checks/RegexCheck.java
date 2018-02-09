@@ -15,7 +15,7 @@ import android.widget.TextView;
 import java.util.regex.Pattern;
 
 /**
- * VAlidate againsta a regex pattern
+ * VAlidate a view against the provided rule or pattern
  */
 public class RegexCheck extends CheckSingle {
 
@@ -51,7 +51,7 @@ public class RegexCheck extends CheckSingle {
 
     @Override
     public boolean run() {
-        String value = getView().getText()+"";
+        String value = getView().getText() + "";
         return pattern.matcher(value).matches();
     }
 

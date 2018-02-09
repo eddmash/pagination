@@ -1,0 +1,349 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Installation &mdash; Android Components 1.0.0 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="../genindex.html"/>
+        <link rel="search" title="Search" href="../search.html"/>
+    <link rel="top" title="Android Components 1.0.0 documentation" href="../index.html"/>
+        <link rel="up" title="Android validation library documentation!" href="index.html"/>
+        <link rel="next" title="Checks" href="checks.html"/>
+        <link rel="prev" title="Android validation library documentation!" href="index.html"/> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> Android Components
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.0.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Validation Documentation</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#usage">Usage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#handle-the-errors">Handle the errors</a></li>
+<li class="toctree-l2"><a class="reference internal" href="checks.html">Validation Checks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="renderer.html">Rendering Errors</a></li>
+<li class="toctree-l2"><a class="reference internal" href="example/fragments.html">Validating across fragments Example</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../form/index.html">Form Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pagination/index.html">Pagination Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../packages.html">Components Api</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Android Components</a>
+        
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html">Android validation library documentation!</a> &raquo;</li>
+        
+      <li>Installation</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/validation/intro.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <p>A lightweight and extensible android validation library.</p>
+<p>It uses simple, straightforward validation methods with a focus on readable and concise syntax.</p>
+<div class="section" id="installation">
+<h1>Installation<a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h1>
+<p>using Maven.</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">dependency</span><span class="o">&gt;</span>
+  <span class="o">&lt;</span><span class="n">groupId</span><span class="o">&gt;</span><span class="n">com</span><span class="o">.</span><span class="n">eddmash</span><span class="o">&lt;/</span><span class="n">groupId</span><span class="o">&gt;</span>
+  <span class="o">&lt;</span><span class="n">artifactId</span><span class="o">&gt;</span><span class="n">validation</span><span class="o">&lt;/</span><span class="n">artifactId</span><span class="o">&gt;</span>
+  <span class="o">&lt;</span><span class="n">version</span><span class="o">&gt;</span><span class="mf">1.0</span><span class="o">.</span><span class="mi">16</span><span class="o">&lt;/</span><span class="n">version</span><span class="o">&gt;</span>
+  <span class="o">&lt;</span><span class="nb">type</span><span class="o">&gt;</span><span class="n">pom</span><span class="o">&lt;/</span><span class="nb">type</span><span class="o">&gt;</span>
+<span class="o">&lt;/</span><span class="n">dependency</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<p>using Gradle.</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="nb">compile</span> <span class="s1">&#39;com.eddmash:validation:1.0.16&#39;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="usage">
+<h1>Usage<a class="headerlink" href="#usage" title="Permalink to this headline">¶</a></h1>
+<p>Using this library boils down to this steps</p>
+<ul class="simple">
+<li>Create a validator object</li>
+</ul>
+<div class="highlight-java"><div class="highlight"><pre><span></span><span class="n">Validator</span> <span class="n">validator</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Validator</span><span class="o">();</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li>Add validation checks to the validator</li>
+</ul>
+<div class="highlight-java"><div class="highlight"><pre><span></span><span class="c1">// the editText objects to validate</span>
+<span class="n">EditText</span> <span class="n">nameEditText</span> <span class="o">=</span> <span class="o">(</span><span class="n">EditText</span><span class="o">)</span> <span class="n">editText</span><span class="o">.</span><span class="na">findViewById</span><span class="o">(</span><span class="n">R</span><span class="o">.</span><span class="na">id</span><span class="o">.</span><span class="na">name</span><span class="o">);</span>
+<span class="n">Spinner</span> <span class="n">ageSpinner</span> <span class="o">=</span> <span class="o">(</span><span class="n">Spinner</span><span class="o">)</span> <span class="n">editText</span><span class="o">.</span><span class="na">findViewById</span><span class="o">(</span><span class="n">R</span><span class="o">.</span><span class="na">id</span><span class="o">.</span><span class="na">spinner</span><span class="o">);</span>
+
+<span class="c1">// ... using check objects</span>
+<span class="n">validator</span><span class="o">.</span><span class="na">addCheck</span><span class="o">(</span><span class="k">new</span> <span class="n">NotEmptyCheck</span><span class="o">(</span><span class="n">nameEditText</span><span class="o">,</span> <span class="s">&quot;name cannot be blank&quot;</span><span class="o">);</span>
+<span class="n">validator</span><span class="o">.</span><span class="na">addCheck</span><span class="o">(</span><span class="k">new</span> <span class="n">NotEmptyCheck</span><span class="o">(</span><span class="n">ageSpinner</span><span class="o">,</span> <span class="s">&quot;age cannot be blank&quot;</span><span class="o">);</span>
+</pre></div>
+</div>
+<p><a class="reference internal" href="checks.html"><span class="doc">Learn more about available checks</span></a></p>
+<ul class="simple">
+<li>Validate</li>
+</ul>
+<p>To run the validations involve the validators
+<a class="reference internal" href="../com/eddmash/validation/ValidatorInterface.html#com.eddmash.validation.ValidatorInterface.validate()" title="com.eddmash.validation.ValidatorInterface.validate()"><code class="xref java java-ref docutils literal"><span class="pre">validate()</span></code></a> method.</p>
+<div class="highlight-java"><div class="highlight"><pre><span></span><span class="n">validator</span><span class="o">.</span><span class="na">validate</span><span class="o">()</span>
+</pre></div>
+</div>
+<p>This method returns <code class="docutils literal"><span class="pre">true</span></code> if the validation passed or <code class="docutils literal"><span class="pre">false</span></code> if the validations failed.</p>
+</div>
+<div class="section" id="handle-the-errors">
+<span id="handling-errors"></span><h1>Handle the errors<a class="headerlink" href="#handle-the-errors" title="Permalink to this headline">¶</a></h1>
+<p>Incase of validation failure, the validation errors can be accessed via the
+<a class="reference internal" href="../com/eddmash/validation/ValidatorInterface.html#com.eddmash.validation.ValidatorInterface.getErrors()" title="com.eddmash.validation.ValidatorInterface.getErrors()"><code class="xref java java-ref docutils literal"><span class="pre">getErrors()</span></code></a> method.</p>
+<p>This library comes with a convenience class <a class="reference internal" href="../com/eddmash/validation/renderer/ErrorRenderer.html#com.eddmash.validation.renderer.ErrorRenderer" title="com.eddmash.validation.renderer.ErrorRenderer"><code class="xref java java-ref docutils literal"><span class="pre">ErrorRenderer</span></code></a>, which can be
+used to easily display the validation errors.</p>
+<ul class="simple">
+<li>Displaying errors.</li>
+</ul>
+<div class="highlight-java"><div class="highlight"><pre><span></span><span class="c1">// the layout where we display any validation errors</span>
+<span class="n">LinearLayout</span> <span class="n">errorSpace</span> <span class="o">=</span> <span class="o">(</span><span class="n">LinearLayout</span><span class="o">)</span> <span class="n">findViewById</span><span class="o">(</span><span class="n">R</span><span class="o">.</span><span class="na">id</span><span class="o">.</span><span class="na">error_base</span><span class="o">);</span>
+<span class="n">errorSpace</span><span class="o">.</span><span class="na">removeAllViews</span><span class="o">();</span><span class="c1">// clear space first</span>
+
+<span class="k">if</span> <span class="o">(</span><span class="n">validator</span><span class="o">.</span><span class="na">validate</span><span class="o">())</span> <span class="o">{</span>
+    <span class="c1">// .. code to perform if validation passes</span>
+<span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+
+    <span class="c1">// show the errors if validation failed</span>
+    <span class="c1">// we use the renderer class to handle the display</span>
+    <span class="n">ErrorRenderer</span> <span class="n">errorRenderer</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ErrorRenderer</span><span class="o">(</span><span class="k">this</span><span class="o">,</span> <span class="n">validator</span><span class="o">);</span>
+    <span class="n">errorRenderer</span><span class="o">.</span><span class="na">render</span><span class="o">(</span><span class="n">errorSpace</span><span class="o">);</span>
+<span class="o">}</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li>Using ValidationListener to handle errors.</li>
+</ul>
+<p>This version of <a class="reference internal" href="../com/eddmash/validation/ValidatorInterface.html#com.eddmash.validation.ValidatorInterface.validate()" title="com.eddmash.validation.ValidatorInterface.validate()"><code class="xref java java-ref docutils literal"><span class="pre">validate()</span></code></a>
+accepts a <a class="reference internal" href="../com/eddmash/validation/ValidationListener.html#com.eddmash.validation.ValidationListener" title="com.eddmash.validation.ValidationListener"><code class="xref java java-ref docutils literal"><span class="pre">ValidationListener</span></code></a> which has
+<a class="reference internal" href="../com/eddmash/validation/ValidationListener.html#com.eddmash.validation.ValidationListener.onValidationSuccess(ValidatorInterface)" title="com.eddmash.validation.ValidationListener.onValidationSuccess(ValidatorInterface)"><code class="xref java java-ref docutils literal"><span class="pre">onValidationSuccess</span></code></a> invoked when
+validation is a success. <a class="reference internal" href="../com/eddmash/validation/ValidationListener.html#com.eddmash.validation.ValidationListener.onValidationFailed(ValidatorInterface)" title="com.eddmash.validation.ValidationListener.onValidationFailed(ValidatorInterface)"><code class="xref java java-ref docutils literal"><span class="pre">onValidationFailed</span></code></a>
+invoked when validation fails methods.</p>
+<div class="highlight-java"><div class="highlight"><pre><span></span><span class="c1">// the layout where we display any validation errors</span>
+<span class="n">LinearLayout</span> <span class="n">errorSpace</span> <span class="o">=</span> <span class="o">(</span><span class="n">LinearLayout</span><span class="o">)</span> <span class="n">findViewById</span><span class="o">(</span><span class="n">R</span><span class="o">.</span><span class="na">id</span><span class="o">.</span><span class="na">error_base</span><span class="o">);</span>
+<span class="n">errorSpace</span><span class="o">.</span><span class="na">removeAllViews</span><span class="o">();</span><span class="c1">// clear space first</span>
+
+<span class="n">validator</span><span class="o">.</span><span class="na">validate</span><span class="o">(</span><span class="k">new</span> <span class="n">ValidationListener</span><span class="o">()</span> <span class="o">{</span>
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">onValidationSuccess</span><span class="o">(</span><span class="n">ValidatorInterface</span> <span class="n">validatorInterface</span><span class="o">)</span> <span class="o">{</span>
+        <span class="c1">// on success code</span>
+    <span class="o">}</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">onValidationFailed</span><span class="o">(</span><span class="n">ValidatorInterface</span> <span class="n">validatorInterface</span><span class="o">)</span> <span class="o">{</span>
+        <span class="c1">// show the errors if validation failed</span>
+        <span class="c1">// we use the renderer class to handle the display</span>
+        <span class="n">ErrorRenderer</span> <span class="n">errorRenderer</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ErrorRenderer</span><span class="o">(</span><span class="n">MainActivity</span><span class="o">.</span><span class="na">this</span><span class="o">,</span>
+                <span class="n">validatorInterface</span><span class="o">);</span>
+        <span class="n">errorRenderer</span><span class="o">.</span><span class="na">render</span><span class="o">(</span><span class="n">errorSpace</span><span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">});</span>
+</pre></div>
+</div>
+</div>
+
+
+           </div>
+           <div class="articleComments">
+            
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="checks.html" class="btn btn-neutral float-right" title="Checks" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="index.html" class="btn btn-neutral" title="Android validation library documentation!" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, Eddilbert Macharia.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'1.0.0',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

@@ -8,8 +8,10 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
@@ -17,7 +19,10 @@ import android.widget.Spinner;
 import com.eddmash.androidcomponents.forms.BasicForm;
 import com.eddmash.form.FormException;
 import com.eddmash.form.FormInterface;
-import com.eddmash.form.values.Value;
+import com.eddmash.form.faker.DummyDataPopulator;
+import com.eddmash.form.faker.provider.TelephoneProvider;
+import com.eddmash.form.values.SimpleValue;
+import com.eddmash.form.values.ValueInterface;
 import com.eddmash.validation.checks.NotEmptyCheck;
 import com.eddmash.validation.renderer.ErrorRenderer;
 
@@ -32,6 +37,7 @@ public class MainActivity extends AppCompatActivity {
     private EditText phoneNumber;
     private EditText firstName;
     private LinearLayout errorspace;
+    private CheckBox termsCheckbox;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,17 +55,37 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        List genders = new ArrayList<>();
-        genders.add(new Value(" ", " "));
-        genders.add(new Value("1", "Male"));
-        genders.add(new Value("2", "Female"));
+        List<ValueInterface> genders = new ArrayList<>();
+        genders.add(new SimpleValue(" ", " "));
+        genders.add(new SimpleValue("1", "Male"));
+        genders.add(new SimpleValue("2", "Female"));
         genderSpinner = findViewById(R.id.gender);
-        ArrayAdapter<Value> adapter = new ArrayAdapter<>(this,
-                android.R.layout.simple_spinner_item, genders);
+
+        ArrayAdapter<ValueInterface> adapter = new ArrayAdapter<>(this, R.layout.spinneritem,
+                genders);
         genderSpinner.setAdapter(adapter);
+        genderSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                Object selected = adapterView.getSelectedItem();
+                if (selected instanceof ValueInterface) {
+                    ValueInterface val = (ValueInterface) selected;
+
+                    val.getItem(); // get the data structure backing this value item
+                    val.getLabel(); // the the label
+                    val.getValue(); // get the actual value
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
 
         phoneNumber = findViewById(R.id.phone_number);
         firstName = findViewById(R.id.first_name);
+        termsCheckbox = findViewById(R.id.terms);
         errorspace = findViewById(R.id.errorspace);
         errorspace.setVisibility(View.GONE);
 
@@ -67,16 +93,29 @@ public class MainActivity extends AppCompatActivity {
         form.addField("gender", genderSpinner);
         form.addField("phonenumber", phoneNumber);
         form.addField("firstname", firstName);
+        form.addField("terms", termsCheckbox);
 
-        form.addCheck(new NotEmptyCheck(genderSpinner,
-                getString(R.string.not_blank, "Gender")));
+        form.addCheck(
+                new NotEmptyCheck(genderSpinner,
+                        getString(R.string.not_blank, "Gender")));
 
-        form.addCheck(new NotEmptyCheck(phoneNumber,
-                getString(R.string.not_blank, "Phonenumber")));
+        form.addCheck(
+                new NotEmptyCheck(termsCheckbox,
+                        getString(R.string.not_blank, "Terms")));
+
+        form.addCheck(new NotEmptyCheck(phoneNumber, getString(R.string.not_blank, "Phonenumber")));
 
         form.addCheck(new NotEmptyCheck(firstName,
                 getString(R.string.not_blank, "Firstname")));
 
+        DummyDataPopulator dataPopulator = new DummyDataPopulator();
+        try {
+            dataPopulator.setFieldProvider("phonenumber",
+                    new TelephoneProvider(dataPopulator,"(+###) ### ### ###"));
+            dataPopulator.populate(form);
+        } catch (FormException e) {
+            e.printStackTrace();
+        }
         saveBtn = findViewById(R.id.savebtn);
         saveBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -88,7 +127,7 @@ public class MainActivity extends AppCompatActivity {
                     } catch (FormException e) {
                         e.printStackTrace();
                     }
-                }else {
+                } else {
                     showErrorsAtTheTop();
                 }
             }
@@ -96,6 +135,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void showErrorsAtTheTop() {
+        errorspace.removeAllViews();
         errorspace.setVisibility(View.VISIBLE);
         ErrorRenderer errorRenderer = new ErrorRenderer(this, form.getValidator());
         errorRenderer.render(errorspace);

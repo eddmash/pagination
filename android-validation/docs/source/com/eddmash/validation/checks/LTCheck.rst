@@ -19,25 +19,25 @@ Constructors
 LTCheck
 ^^^^^^^
 
-.. java:constructor:: public LTCheck(EditText view, String errorMessage, int min)
+.. java:constructor:: public LTCheck(EditText editText, String errorMessage, int min)
    :outertype: LTCheck
 
 LTCheck
 ^^^^^^^
 
-.. java:constructor:: public LTCheck(Spinner view, String errorMessage, int min)
+.. java:constructor:: public LTCheck(Spinner editText, String errorMessage, int min)
    :outertype: LTCheck
 
 LTCheck
 ^^^^^^^
 
-.. java:constructor:: public LTCheck(EditText view, String errorMessage, double min)
+.. java:constructor:: public LTCheck(EditText editText, String errorMessage, double min)
    :outertype: LTCheck
 
 LTCheck
 ^^^^^^^
 
-.. java:constructor:: public LTCheck(Spinner view, String errorMessage, double min)
+.. java:constructor:: public LTCheck(Spinner editText, String errorMessage, double min)
    :outertype: LTCheck
 
 Methods

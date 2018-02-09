@@ -32,7 +32,7 @@ getValue
 
    Gets the value to be validated.
 
-   :return: value of the view
+   :return: value of the editText
 
 getView
 ^^^^^^^
@@ -40,13 +40,13 @@ getView
 .. java:method:: protected TextView getView()
    :outertype: CheckSingle
 
-   Gets the view we are working on.This can be anything that is a child of TextView e.g. EditText, CompoundButton like Checkboxes
+   Gets the editText we are working on.This can be anything that is a child of TextView e.g. EditText, CompoundButton like Checkboxes
 
-   Incase of a spinner you return the selected view like so.
+   Incase of a spinner you return the selected editText like so.
 
    (TextView) spinner.getSelectedView();
 
-   :return: the View from which to get value to isValid and also on which to set error by invoking \ **view.setError()**\
+   :return: the View from which to get value to isValid and also on which to set error by invoking \ **editText.setError()**\
 
 setError
 ^^^^^^^^

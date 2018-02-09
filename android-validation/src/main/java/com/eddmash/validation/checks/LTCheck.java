@@ -13,7 +13,7 @@ import android.widget.EditText;
 import android.widget.Spinner;
 
 /**
- * Less than
+ * Check if the value on the view is less than the provided value.
  */
 public class LTCheck extends NotEmptyCheck {
     private double min;

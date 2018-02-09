@@ -15,7 +15,7 @@ defines a few methods.
 - :java:ref:`getErrorMsg() <CheckInterface.getErrorMsg()>` this should the error message to be used
   incase validation fails.
 - :java:ref:`setError() <CheckInterface.setError()>` This method is invoked to with the error
-  message above as an argument. This method should be used to set the error message on the view.
+  message above as an argument. This method should be used to set the error message on the editText.
 - :java:ref:`clearError() <CheckInterface.clearError()>` This method is invoked just be validation
   is run. it should be used to clear any previous error displayed on the validator.
 

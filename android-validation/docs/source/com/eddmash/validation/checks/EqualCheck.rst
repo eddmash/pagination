@@ -17,13 +17,13 @@ Constructors
 EqualCheck
 ^^^^^^^^^^
 
-.. java:constructor:: public EqualCheck(EditText view, String errorMessage, int valToEquate)
+.. java:constructor:: public EqualCheck(EditText editText, String errorMessage, int valToEquate)
    :outertype: EqualCheck
 
 EqualCheck
 ^^^^^^^^^^
 
-.. java:constructor:: public EqualCheck(EditText view, String errorMessage, double valToEquate)
+.. java:constructor:: public EqualCheck(EditText editText, String errorMessage, double valToEquate)
    :outertype: EqualCheck
 
 Methods

@@ -21,13 +21,13 @@ Constructors
 RegexCheck
 ^^^^^^^^^^
 
-.. java:constructor:: public RegexCheck(EditText view, String errorMessage, String rule)
+.. java:constructor:: public RegexCheck(EditText editText, String errorMessage, String rule)
    :outertype: RegexCheck
 
 RegexCheck
 ^^^^^^^^^^
 
-.. java:constructor:: public RegexCheck(EditText view, String errorMessage, Pattern pattern)
+.. java:constructor:: public RegexCheck(EditText editText, String errorMessage, Pattern pattern)
    :outertype: RegexCheck
 
 RegexCheck

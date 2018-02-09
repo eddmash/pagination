@@ -29,7 +29,7 @@ Constructors
 NotEmptyCheck
 ^^^^^^^^^^^^^
 
-.. java:constructor:: public NotEmptyCheck(EditText view, String errorMessage)
+.. java:constructor:: public NotEmptyCheck(EditText editText, String errorMessage)
    :outertype: NotEmptyCheck
 
 NotEmptyCheck
@@ -58,7 +58,7 @@ getView
 .. java:method:: @Override protected TextView getView()
    :outertype: NotEmptyCheck
 
-   Gets the view we are working on.
+   Gets the editText we are working on.
 
 run
 ^^^

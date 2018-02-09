@@ -4,27 +4,33 @@ package com.eddmash.validation.checks;
 * 
 * (c) Eddilbert Macharia (http://eddmash.com)<edd.cowan@gmail.com>
 *
-* For the full copyright and license information, please view the LICENSE
+* For the full copyright and license information, please editText the LICENSE
 * file that was distributed with this source code.
 */
 
 import android.util.Log;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import java.util.Objects;
 
 /**
- * Not empty
+ * Ensure the view if not blank.
  */
 public class NotEmptyCheck extends CheckSingle {
 
-    private EditText view;
+    private EditText editText;
     private Spinner spinner;
+    private CompoundButton compoundButton;
 
     protected String errorMessage;
 
-    public NotEmptyCheck(EditText view, String errorMessage) {
-        this.view = view;
+    public NotEmptyCheck(EditText editText, String errorMessage) {
+        this.editText = editText;
         this.errorMessage = errorMessage;
     }
 
@@ -33,20 +39,31 @@ public class NotEmptyCheck extends CheckSingle {
         this.errorMessage = errorMessage;
     }
 
+    public NotEmptyCheck(CompoundButton compoundButton, String errorMessage) {
+        this.compoundButton = compoundButton;
+        this.errorMessage = errorMessage;
+    }
+
     @Override
     public boolean run() {
-        return !getValue().isEmpty();
+        Log.e(getClass().getSimpleName(), errorMessage + " :: " + getValue().trim().isEmpty());
+        return !getValue().trim().isEmpty();
     }
 
     /**
-     * Gets the view we are working on.
+     * Gets the editText we are working on.
+     *
      * @return
      */
     @Override
     protected TextView getView() {
-        TextView v = view;
+        TextView v = editText;
         if (spinner != null) {
             v = (TextView) spinner.getSelectedView();
+        }
+
+        if (compoundButton != null) {
+            v = compoundButton;
         }
         return v;
     }
@@ -54,14 +71,21 @@ public class NotEmptyCheck extends CheckSingle {
     @Override
     public String getValue() {
         String value = "";
+
         if (spinner != null) {
             int selectedItemOfMySpinner = spinner.getSelectedItemPosition();
-            Object val = spinner.getItemAtPosition(selectedItemOfMySpinner);
-            if (val!=null){
-                value = val.toString();
+            if (spinner.getItemAtPosition(selectedItemOfMySpinner) == null) {
+                value = "";
+            } else {
+                value = String.valueOf(spinner.getItemAtPosition(selectedItemOfMySpinner));
             }
+        } else if (compoundButton != null) {
+            if (compoundButton.isChecked()) {
+                return "true";
+            }
+            return "";
         } else {
-            value = view.getText() + "";
+            value = String.valueOf(editText.getText());
         }
         return value;
     }

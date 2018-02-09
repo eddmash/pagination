@@ -5,12 +5,14 @@ import android.widget.EditText;
 import java.util.regex.Pattern;
 
 /**
- *
+ * Classes that impliment this interface can be used for validation checks.
  */
 public interface CheckInterface {
 
 
     /**
+     * This is where all the validation logic is placed.
+     *
      * @return true if validation was a success else return false.
      */
     boolean run();

@@ -14,6 +14,11 @@ import com.eddmash.validation.checks.CheckSingle;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * Validators should implement this interface
+ * <p>
+ * {@link Validator}
+ */
 public interface ValidatorInterface {
     /**
      * Does the actual validation.
@@ -26,12 +31,12 @@ public interface ValidatorInterface {
      * Does the actual validation.
      *
      * @param validationListener listener that is
-     *
      */
     void validate(ValidationListener validationListener);
 
     /**
      * Adds validation checks to be enforced by a validator
+     *
      * @param checkInterface
      */
     void addCheck(CheckInterface checkInterface);
@@ -52,6 +57,7 @@ public interface ValidatorInterface {
 
     /**
      * Disable the validator from being validated any more.
+     *
      * @param validatorInterface validatorInterface object
      */
     void disableValidator(ValidatorInterface validatorInterface);
@@ -77,7 +83,7 @@ public interface ValidatorInterface {
 
     /**
      * Clear all the errors from the validator.
-     *
+     * <p>
      * maybe use when you have already run the validation onces and want to
      * run the validation again using the same ValidatorInterface instance
      */

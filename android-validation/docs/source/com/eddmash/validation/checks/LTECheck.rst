@@ -19,25 +19,25 @@ Constructors
 LTECheck
 ^^^^^^^^
 
-.. java:constructor:: public LTECheck(EditText view, String errorMessage, int min)
+.. java:constructor:: public LTECheck(EditText editText, String errorMessage, int min)
    :outertype: LTECheck
 
 LTECheck
 ^^^^^^^^
 
-.. java:constructor:: public LTECheck(Spinner view, String errorMessage, int min)
+.. java:constructor:: public LTECheck(Spinner editText, String errorMessage, int min)
    :outertype: LTECheck
 
 LTECheck
 ^^^^^^^^
 
-.. java:constructor:: public LTECheck(EditText view, String errorMessage, double min)
+.. java:constructor:: public LTECheck(EditText editText, String errorMessage, double min)
    :outertype: LTECheck
 
 LTECheck
 ^^^^^^^^
 
-.. java:constructor:: public LTECheck(Spinner view, String errorMessage, double min)
+.. java:constructor:: public LTECheck(Spinner editText, String errorMessage, double min)
    :outertype: LTECheck
 
 Methods

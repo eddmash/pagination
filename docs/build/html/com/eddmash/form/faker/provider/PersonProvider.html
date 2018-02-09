@@ -1,0 +1,431 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>PersonProvider &mdash; Android Components 1.0.0 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../../../../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="../../../../../genindex.html"/>
+        <link rel="search" title="Search" href="../../../../../search.html"/>
+    <link rel="top" title="Android Components 1.0.0 documentation" href="../../../../../index.html"/>
+        <link rel="up" title="com.eddmash.form.faker.provider" href="package-index.html"/>
+        <link rel="next" title="Provider" href="Provider.html"/>
+        <link rel="prev" title="LoremProvider" href="LoremProvider.html"/> 
+
+  
+  <script src="../../../../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../../../../index.html" class="icon icon-home"> Android Components
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.0.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../../../validation/index.html">Validation Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../form/index.html">Form Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../pagination/index.html">Pagination Documentation</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../../../../packages.html">Components Api</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../../db/package-index.html">com.eddmash.db</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../package-index.html">com.eddmash.form</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../collection/package-index.html">com.eddmash.form.collection</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../package-index.html">com.eddmash.form.faker</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="package-index.html">com.eddmash.form.faker.provider</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="Company.html">Company</a></li>
+<li class="toctree-l3"><a class="reference internal" href="CoordinatesProvider.html">CoordinatesProvider</a></li>
+<li class="toctree-l3"><a class="reference internal" href="DateProvider.html">DateProvider</a></li>
+<li class="toctree-l3"><a class="reference internal" href="InternetProvider.html">InternetProvider</a></li>
+<li class="toctree-l3"><a class="reference internal" href="LocationsProvider.html">LocationsProvider</a></li>
+<li class="toctree-l3"><a class="reference internal" href="LoremProvider.html">LoremProvider</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">PersonProvider</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#fields">Fields</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#constructors">Constructors</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#methods">Methods</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="Provider.html">Provider</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ProviderInterface.html">ProviderInterface</a></li>
+<li class="toctree-l3"><a class="reference internal" href="RandomNumberProvider.html">RandomNumberProvider</a></li>
+<li class="toctree-l3"><a class="reference internal" href="TelephoneProvider.html">TelephoneProvider</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../fields/package-index.html">com.eddmash.form.fields</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../values/package-index.html">com.eddmash.form.values</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../pagination/package-index.html">com.eddmash.pagination</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../validation/package-index.html">com.eddmash.validation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../validation/checks/package-index.html">com.eddmash.validation.checks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../validation/renderer/package-index.html">com.eddmash.validation.renderer</a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../../index.html">Android Components</a>
+        
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../../../../../packages.html">Javadoc</a> &raquo;</li>
+        
+          <li><a href="package-index.html">com.eddmash.form.faker.provider</a> &raquo;</li>
+        
+      <li>PersonProvider</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../../../../../_sources/com/eddmash/form/faker/provider/PersonProvider.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="personprovider">
+<h1>PersonProvider<a class="headerlink" href="#personprovider" title="Permalink to this headline">¶</a></h1>
+<dl class="type">
+<dt id="com.eddmash.form.faker.provider.PersonProvider">
+public class <code class="descname">PersonProvider</code> extends <a class="reference internal" href="Provider.html#com.eddmash.form.faker.provider.Provider" title="com.eddmash.form.faker.provider.Provider">Provider</a><a class="headerlink" href="#com.eddmash.form.faker.provider.PersonProvider" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<div class="section" id="fields">
+<h2>Fields<a class="headerlink" href="#fields" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="email">
+<h3>EMAIL<a class="headerlink" href="#email" title="Permalink to this headline">¶</a></h3>
+<dl class="field">
+<dt id="com.eddmash.form.faker.provider.PersonProvider.EMAIL">
+public static final <a class="reference external" href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html" title="java.lang.String">String</a> <code class="descname">EMAIL</code><a class="headerlink" href="#com.eddmash.form.faker.provider.PersonProvider.EMAIL" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="female">
+<h3>FEMALE<a class="headerlink" href="#female" title="Permalink to this headline">¶</a></h3>
+<dl class="field">
+<dt id="com.eddmash.form.faker.provider.PersonProvider.FEMALE">
+public static final <a class="reference external" href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html" title="java.lang.String">String</a> <code class="descname">FEMALE</code><a class="headerlink" href="#com.eddmash.form.faker.provider.PersonProvider.FEMALE" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="firstname">
+<h3>FIRSTNAME<a class="headerlink" href="#firstname" title="Permalink to this headline">¶</a></h3>
+<dl class="field">
+<dt id="com.eddmash.form.faker.provider.PersonProvider.FIRSTNAME">
+public static final <a class="reference external" href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html" title="java.lang.String">String</a> <code class="descname">FIRSTNAME</code><a class="headerlink" href="#com.eddmash.form.faker.provider.PersonProvider.FIRSTNAME" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="lastname">
+<h3>LASTNAME<a class="headerlink" href="#lastname" title="Permalink to this headline">¶</a></h3>
+<dl class="field">
+<dt id="com.eddmash.form.faker.provider.PersonProvider.LASTNAME">
+public static final <a class="reference external" href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html" title="java.lang.String">String</a> <code class="descname">LASTNAME</code><a class="headerlink" href="#com.eddmash.form.faker.provider.PersonProvider.LASTNAME" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="male">
+<h3>MALE<a class="headerlink" href="#male" title="Permalink to this headline">¶</a></h3>
+<dl class="field">
+<dt id="com.eddmash.form.faker.provider.PersonProvider.MALE">
+public static final <a class="reference external" href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html" title="java.lang.String">String</a> <code class="descname">MALE</code><a class="headerlink" href="#com.eddmash.form.faker.provider.PersonProvider.MALE" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="name">
+<h3>NAME<a class="headerlink" href="#name" title="Permalink to this headline">¶</a></h3>
+<dl class="field">
+<dt id="com.eddmash.form.faker.provider.PersonProvider.NAME">
+public static final <a class="reference external" href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html" title="java.lang.String">String</a> <code class="descname">NAME</code><a class="headerlink" href="#com.eddmash.form.faker.provider.PersonProvider.NAME" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="provider-name">
+<h3>PROVIDER_NAME<a class="headerlink" href="#provider-name" title="Permalink to this headline">¶</a></h3>
+<dl class="field">
+<dt id="com.eddmash.form.faker.provider.PersonProvider.PROVIDER_NAME">
+public static final <a class="reference external" href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html" title="java.lang.String">String</a> <code class="descname">PROVIDER_NAME</code><a class="headerlink" href="#com.eddmash.form.faker.provider.PersonProvider.PROVIDER_NAME" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+</div>
+<div class="section" id="constructors">
+<h2>Constructors<a class="headerlink" href="#constructors" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id1">
+<h3>PersonProvider<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
+<dl class="constructor">
+<dt id="com.eddmash.form.faker.provider.PersonProvider.PersonProvider(PopulatorInterface)">
+public <code class="descname">PersonProvider</code><span class="sig-paren">(</span><a class="reference internal" href="../PopulatorInterface.html#com.eddmash.form.faker.PopulatorInterface" title="com.eddmash.form.faker.PopulatorInterface">PopulatorInterface</a><em> populator</em><span class="sig-paren">)</span><a class="headerlink" href="#com.eddmash.form.faker.provider.PersonProvider.PersonProvider(PopulatorInterface)" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="id2">
+<h3>PersonProvider<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
+<dl class="constructor">
+<dt id="com.eddmash.form.faker.provider.PersonProvider.PersonProvider(PopulatorInterface, String)">
+public <code class="descname">PersonProvider</code><span class="sig-paren">(</span><a class="reference internal" href="../PopulatorInterface.html#com.eddmash.form.faker.PopulatorInterface" title="com.eddmash.form.faker.PopulatorInterface">PopulatorInterface</a><em> populator</em>, <a class="reference external" href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html" title="java.lang.String">String</a><em> format</em><span class="sig-paren">)</span><a class="headerlink" href="#com.eddmash.form.faker.provider.PersonProvider.PersonProvider(PopulatorInterface, String)" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+</div>
+<div class="section" id="methods">
+<h2>Methods<a class="headerlink" href="#methods" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="generate">
+<h3>generate<a class="headerlink" href="#generate" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="com.eddmash.form.faker.provider.PersonProvider.generate()">
+public <a class="reference external" href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html" title="java.lang.String">String</a> <code class="descname">generate</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#com.eddmash.form.faker.provider.PersonProvider.generate()" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="getfirstname">
+<h3>getFirstName<a class="headerlink" href="#getfirstname" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="com.eddmash.form.faker.provider.PersonProvider.getFirstName()">
+public <a class="reference internal" href="ProviderInterface.html#com.eddmash.form.faker.provider.ProviderInterface" title="com.eddmash.form.faker.provider.ProviderInterface">ProviderInterface</a> <code class="descname">getFirstName</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#com.eddmash.form.faker.provider.PersonProvider.getFirstName()" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="id3">
+<h3>getFirstName<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="com.eddmash.form.faker.provider.PersonProvider.getFirstName(String)">
+public <a class="reference internal" href="ProviderInterface.html#com.eddmash.form.faker.provider.ProviderInterface" title="com.eddmash.form.faker.provider.ProviderInterface">ProviderInterface</a> <code class="descname">getFirstName</code><span class="sig-paren">(</span><a class="reference external" href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html" title="java.lang.String">String</a><em> gender</em><span class="sig-paren">)</span><a class="headerlink" href="#com.eddmash.form.faker.provider.PersonProvider.getFirstName(String)" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="getfullname">
+<h3>getFullName<a class="headerlink" href="#getfullname" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="com.eddmash.form.faker.provider.PersonProvider.getFullName()">
+public <a class="reference internal" href="ProviderInterface.html#com.eddmash.form.faker.provider.ProviderInterface" title="com.eddmash.form.faker.provider.ProviderInterface">ProviderInterface</a> <code class="descname">getFullName</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#com.eddmash.form.faker.provider.PersonProvider.getFullName()" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="id4">
+<h3>getFullName<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="com.eddmash.form.faker.provider.PersonProvider.getFullName(String)">
+public <a class="reference internal" href="ProviderInterface.html#com.eddmash.form.faker.provider.ProviderInterface" title="com.eddmash.form.faker.provider.ProviderInterface">ProviderInterface</a> <code class="descname">getFullName</code><span class="sig-paren">(</span><a class="reference external" href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html" title="java.lang.String">String</a><em> gender</em><span class="sig-paren">)</span><a class="headerlink" href="#com.eddmash.form.faker.provider.PersonProvider.getFullName(String)" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="getlastname">
+<h3>getLastName<a class="headerlink" href="#getlastname" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="com.eddmash.form.faker.provider.PersonProvider.getLastName()">
+public <a class="reference internal" href="ProviderInterface.html#com.eddmash.form.faker.provider.ProviderInterface" title="com.eddmash.form.faker.provider.ProviderInterface">ProviderInterface</a> <code class="descname">getLastName</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#com.eddmash.form.faker.provider.PersonProvider.getLastName()" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="id5">
+<h3>getLastName<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="com.eddmash.form.faker.provider.PersonProvider.getLastName(String)">
+public <a class="reference internal" href="ProviderInterface.html#com.eddmash.form.faker.provider.ProviderInterface" title="com.eddmash.form.faker.provider.ProviderInterface">ProviderInterface</a> <code class="descname">getLastName</code><span class="sig-paren">(</span><a class="reference external" href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html" title="java.lang.String">String</a><em> gender</em><span class="sig-paren">)</span><a class="headerlink" href="#com.eddmash.form.faker.provider.PersonProvider.getLastName(String)" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="setgender">
+<h3>setGender<a class="headerlink" href="#setgender" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="com.eddmash.form.faker.provider.PersonProvider.setGender(String)">
+public <a class="reference internal" href="#com.eddmash.form.faker.provider.PersonProvider" title="com.eddmash.form.faker.provider.PersonProvider">PersonProvider</a> <code class="descname">setGender</code><span class="sig-paren">(</span><a class="reference external" href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html" title="java.lang.String">String</a><em> gender</em><span class="sig-paren">)</span><a class="headerlink" href="#com.eddmash.form.faker.provider.PersonProvider.setGender(String)" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="settype">
+<h3>setType<a class="headerlink" href="#settype" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="com.eddmash.form.faker.provider.PersonProvider.setType(String)">
+public <a class="reference internal" href="#com.eddmash.form.faker.provider.PersonProvider" title="com.eddmash.form.faker.provider.PersonProvider">PersonProvider</a> <code class="descname">setType</code><span class="sig-paren">(</span><a class="reference external" href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html" title="java.lang.String">String</a><em> type</em><span class="sig-paren">)</span><a class="headerlink" href="#com.eddmash.form.faker.provider.PersonProvider.setType(String)" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+</div>
+</div>
+
+
+           </div>
+           <div class="articleComments">
+            
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="Provider.html" class="btn btn-neutral float-right" title="Provider" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="LoremProvider.html" class="btn btn-neutral" title="LoremProvider" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, Eddilbert Macharia.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../../../../',
+            VERSION:'1.0.0',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../../../../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../../../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../../../../_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../../../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

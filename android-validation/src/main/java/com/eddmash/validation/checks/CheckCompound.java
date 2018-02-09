@@ -15,6 +15,15 @@ import com.eddmash.validation.ValidatorInterface;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * This Implementation of this class gets the ability to run multiple checks as a unit.
+ * <p>
+ * The {@link AllCheck } implementation ensures that all the checks added to it pass the
+ * validation if any one of the fails the whole check fails.
+ * <p>
+ * The {@link AnyCheck } implentation ensures that atleast one passed the check meaning this
+ * check will pass validatioin if one of the checks within passed.
+ */
 abstract public class CheckCompound extends CheckSingle {
 
     private ViewGroup viewGroup;

@@ -11,6 +11,10 @@ package com.eddmash.pagination;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * Implementation of this class will be notified each time there is a change in the
+ * {@link SqlPaginator}.
+ */
 public interface DataListener {
 
     /**
@@ -25,7 +29,7 @@ public interface DataListener {
     /**
      * Invoked before the next page is loaded.
      *
-     * @param hasMorePages
+     * @param hasMorePages true if there are more pages to load.
      */
     void preDataLoad(boolean hasMorePages);
 
@@ -35,12 +39,26 @@ public interface DataListener {
      * <p>
      * This is invoked when new data is received. it asynchronously  on the doBackground method of
      * an AsyncTask.
+     * <p>
+     * Please note this method is never run on the main UI thread.
      *
-     * @param records
+     * @param records list of data for the current page.
      */
     void dataUpdate(List<Map> records);
 
+    /**
+     * Triggered when data for the last page has been loaded and is ready for use.
+     * <p>
+     * The data can be accessed on {@link DataListener#dataUpdate(List)} method.
+     */
     void onLastPageDataLoaded();
 
+    /**
+     * Triggered when data for the first page has been loaded and is ready for use.
+     * <p>
+     * The data can be accessed on {@link DataListener#dataUpdate(List)} method.
+     *
+     * @param hasMorePages true if there are more pages to load.
+     */
     void onFirstPageDataLoaded(boolean hasMorePages);
 }

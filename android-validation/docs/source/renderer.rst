@@ -2,7 +2,7 @@ Renderer
 ########
 
 Whilst the error message on individual fields might be enough for most cases.
-There are time you want to display the errors at convenient location that the user can view them all
+There are time you want to display the errors at convenient location that the user can editText them all
 at ones in at a centralised location.
 
 A good example is when validating fields that :doc:`span multiple fragments <example/fragments>`.

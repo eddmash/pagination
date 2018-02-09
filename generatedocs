@@ -1,0 +1,28 @@
+#! /bin/bash
+
+docsEnv=~/django110/bin/activate
+docsdir=docs/
+sourcedir=$docsdir/source
+
+if ! [ -x "$docsEnv" ];then
+    source $docsEnv
+else
+    echo "could not find a virtual enviroment for docs , was looing form $docsEnv"
+fi
+if [ -x "$(command -v javasphinx-apidoc)" ];then
+    if [ ! -d "$sourcedir" ]; then
+        mkdir -p $sourcedir
+    fi
+    if [ -d "$sourcedir" ]; then
+        javasphinx-apidoc -vo $sourcedir -f android-activerecord/src/main -I android-form/src/main\
+        -I android-validation/src/main -I android-pagination/src/main
+        cd $docsdir
+        echo "Changed direcoty ... $PWD"
+        make clean
+        make html
+    else
+        echo 'Create "$docsdir" folder'
+    fi
+else
+    echo 'javasphinx-apidoc not installed'
+fi

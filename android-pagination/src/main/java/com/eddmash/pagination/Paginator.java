@@ -20,7 +20,7 @@ public abstract class Paginator implements PaginatorInterface {
     /**
      * Monitor if we are currently populating.
      */
-    private boolean populating = false;
+    protected boolean populating = false;
     protected int currentPage;
     public int newPageStartPoint;
     protected int _totalRecords;
@@ -63,7 +63,7 @@ public abstract class Paginator implements PaginatorInterface {
             dataListener.preDataLoad(last <= _totalRecords);
             //don't create another sync when we are currently populating.
             if (size >= newPageStartPoint) {
-                new LoadDataTask().execute(newPageStartPoint, last);
+                new LoadDataTask(this).execute(newPageStartPoint, last);
             }
         }
     }
@@ -95,32 +95,39 @@ public abstract class Paginator implements PaginatorInterface {
         return _totalRecords;
     }
 
-    protected class LoadDataTask extends AsyncTask<Integer, Void, Void> {
+    protected static class LoadDataTask extends AsyncTask<Integer, Void, Void> {
+        private Paginator paginator;
+
+        LoadDataTask(Paginator paginator) {
+
+            this.paginator = paginator;
+        }
 
         @Override
         protected Void doInBackground(Integer... params) {
-            populating = true;
+            paginator.populating = true;
             int startPoint = params[0];
             int endPoint = params[1];
-            List<Map> data = getNextPageRecords(startPoint, endPoint);
-            _currentRecordsCounter = _currentRecordsCounter + data.size();
-            dataListener.dataUpdate(data);
+            List<Map> data = paginator.getNextPageRecords(startPoint, endPoint);
+            paginator._currentRecordsCounter = paginator._currentRecordsCounter + data.size();
+            paginator.dataListener.dataUpdate(data);
             return null;
         }
 
         @Override
         protected void onPostExecute(Void done) {
-            populating = false;
-            if (isLastPage) {
-                dataListener.onLastPageDataLoaded();
+            paginator.populating = false;
+            if (paginator.isLastPage) {
+                paginator.dataListener.onLastPageDataLoaded();
             }
 
-            if (currentPage == 1) {
-                updatePageCount();
-                dataListener.onFirstPageDataLoaded(_currentRecordsCounter < _totalRecords);
+            if (paginator.currentPage == 1) {
+                paginator.updatePageCount();
+                paginator.dataListener.onFirstPageDataLoaded(
+                        paginator._currentRecordsCounter < paginator._totalRecords);
             }
-            if (currentPage != 1 && !isLastPage) {
-                dataListener.onNextPageDataLoaded();
+            if (paginator.currentPage != 1 && !paginator.isLastPage) {
+                paginator.dataListener.onNextPageDataLoaded();
             }
         }
     }

@@ -8,6 +8,7 @@ package com.eddmash.pagination;
 * file that was distributed with this source code.
 */
 
+import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
 
 import com.eddmash.db.ActiveRecord;
@@ -15,15 +16,19 @@ import com.eddmash.db.ActiveRecord;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * An implimentation of {@link PaginatorInterface}
+ */
 public class SqlPaginator extends Paginator {
 
     private String _sql;
     private String[] _params;
     private ActiveRecord activeRecord;
 
-    public SqlPaginator(DataListener dataListener, ActiveRecord activeRecord) {
+    public SqlPaginator(DataListener dataListener, SQLiteDatabase database) {
         super(dataListener);
-        this.activeRecord = activeRecord;
+
+        this.activeRecord = ActiveRecord.getInstance(database);
     }
 
     public void query(String sql, String[] params) {
@@ -33,7 +38,7 @@ public class SqlPaginator extends Paginator {
         _totalRecords = activeRecord.getScalarInt("select count(*) from (" + sql + ")", params);
         Log.e(getClass().getName(), "COUNT TOTAL " + _totalRecords);
 
-        new LoadDataTask().execute(0, pageSize);
+        new LoadDataTask(this).execute(0, pageSize);
     }
 
     @Override

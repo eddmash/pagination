@@ -1,0 +1,361 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Validating across fragments Example &mdash; Android Components 1.0.0 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="../../genindex.html"/>
+        <link rel="search" title="Search" href="../../search.html"/>
+    <link rel="top" title="Android Components 1.0.0 documentation" href="../../index.html"/>
+        <link rel="up" title="Android validation library documentation!" href="../index.html"/>
+        <link rel="next" title="Welcome to Android Forms documentation!" href="../../form/index.html"/>
+        <link rel="prev" title="RendererInterface" href="../../com/eddmash/validation/renderer/RendererInterface.html"/> 
+
+  
+  <script src="../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> Android Components
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.0.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Validation Documentation</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../intro.html">Installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../intro.html#usage">Usage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../intro.html#handle-the-errors">Handle the errors</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../checks.html">Validation Checks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../renderer.html">Rendering Errors</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Validating across fragments Example</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../form/index.html">Form Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../pagination/index.html">Pagination Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../packages.html">Components Api</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Android Components</a>
+        
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../index.html">Android validation library documentation!</a> &raquo;</li>
+        
+      <li>Validating across fragments Example</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../../_sources/validation/example/fragments.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="validating-across-fragments-example">
+<h1>Validating across fragments Example<a class="headerlink" href="#validating-across-fragments-example" title="Permalink to this headline">¶</a></h1>
+<p>Define an interface to be used to communicate between the activity and its fragments</p>
+<div class="highlight-java"><div class="highlight"><pre><span></span><span class="kd">public</span> <span class="kd">interface</span> <span class="nc">FormSaveListener</span> <span class="o">{</span>
+
+    <span class="cm">/**</span>
+<span class="cm">     * Save the data saved by the user. this values are cleared once a save to the database is made</span>
+<span class="cm">     * otherwise this are saved for use on restore.</span>
+<span class="cm">     *</span>
+<span class="cm">     */</span>
+    <span class="kt">void</span> <span class="nf">save</span><span class="o">();</span>
+
+    <span class="cm">/**</span>
+<span class="cm">    * Return a validator object that will be shared to the fragments</span>
+<span class="cm">    */</span>
+    <span class="n">ValidationListener</span> <span class="nf">getValidator</span><span class="o">();</span>
+<span class="o">}</span>
+</pre></div>
+</div>
+<p>The activity that contains fragments should implement the <cite>FormSaveListener</cite> interface above.</p>
+<p>The activity defines a validator object that this activity will use for validation.</p>
+<div class="highlight-java"><div class="highlight"><pre><span></span><span class="kd">public</span> <span class="kd">class</span> <span class="nc">DetailsActivity</span> <span class="kd">extends</span> <span class="n">Activity</span> <span class="kd">implements</span> <span class="n">FormSaveListener</span><span class="o">{</span>
+    <span class="n">ValidationListener</span> <span class="n">mainValidator</span><span class="o">;</span>
+    <span class="nd">@Override</span>
+    <span class="kd">protected</span> <span class="kt">void</span> <span class="nf">onCreate</span><span class="o">(</span><span class="n">Bundle</span> <span class="n">savedInstanceState</span><span class="o">)</span> <span class="o">{</span>
+        <span class="kd">super</span><span class="o">.</span><span class="na">onCreate</span><span class="o">(</span><span class="n">savedInstanceState</span><span class="o">);</span>
+
+        <span class="k">if</span> <span class="o">(</span><span class="n">getResources</span><span class="o">().</span><span class="na">getConfiguration</span><span class="o">().</span><span class="na">orientation</span>
+                <span class="o">==</span> <span class="n">Configuration</span><span class="o">.</span><span class="na">ORIENTATION_LANDSCAPE</span><span class="o">)</span> <span class="o">{</span>
+            <span class="c1">// If the screen is now in landscape mode, we can show the</span>
+            <span class="c1">// dialog in-line with the list so we don&#39;t need this activity.</span>
+            <span class="n">finish</span><span class="o">();</span>
+            <span class="k">return</span><span class="o">;</span>
+        <span class="o">}</span>
+
+        <span class="k">if</span> <span class="o">(</span><span class="n">savedInstanceState</span> <span class="o">==</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+            <span class="n">FragmentA</span> <span class="n">fragmentA</span> <span class="o">=</span> <span class="k">new</span> <span class="n">FragmentA</span><span class="o">();</span>
+            <span class="n">fragmentA</span><span class="o">.</span><span class="na">setArguments</span><span class="o">(</span><span class="n">getIntent</span><span class="o">().</span><span class="na">getExtras</span><span class="o">());</span>
+            <span class="n">getFragmentManager</span><span class="o">().</span><span class="na">beginTransaction</span><span class="o">().</span><span class="na">add</span><span class="o">(</span><span class="n">R</span><span class="o">.</span><span class="na">id</span><span class="o">.</span><span class="na">fragment_location</span><span class="o">,</span> <span class="n">fragmentA</span><span class="o">).</span><span class="na">commit</span><span class="o">();</span>
+        <span class="o">}</span>
+
+        <span class="n">mainValidator</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Validator</span><span class="o">(</span><span class="k">this</span><span class="o">);</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="n">ValidationListener</span> <span class="nf">getValidator</span><span class="o">(){</span>
+        <span class="k">return</span> <span class="n">mainValidator</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">save</span><span class="o">(){</span>
+         <span class="k">if</span> <span class="o">(</span><span class="n">mainValidator</span><span class="o">.</span><span class="na">validate</span><span class="o">())</span> <span class="o">{</span>
+             <span class="c1">// .. code to perform if validation passes</span>
+         <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+
+             <span class="c1">// show the errors if validation failed</span>
+             <span class="c1">// we use the renderer class to handle the display</span>
+             <span class="n">ErrorRenderer</span> <span class="n">errorRenderer</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ErrorRenderer</span><span class="o">(</span><span class="k">this</span><span class="o">,</span> <span class="n">validator</span><span class="o">);</span>
+             <span class="n">errorRenderer</span><span class="o">.</span><span class="na">render</span><span class="o">(</span><span class="n">errorSpace</span><span class="o">);</span>
+         <span class="o">}</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</pre></div>
+</div>
+<p>On each fragement we create a validation object and give it a tag id, so that the errors for each
+fragment be grouped together.</p>
+<p>On each fragement, onAttach ensure to cast the context to form FormSaveListener,</p>
+<p>Add the fragments validation object to the activities validation object,
+This makes it to be validated at the time when the activity validation is done.</p>
+<p>We run the activities validation when the submit button is clicked.</p>
+<div class="highlight-java"><div class="highlight"><pre><span></span><span class="kd">public</span> <span class="kd">class</span> <span class="nc">FragmentA</span> <span class="kd">extends</span> <span class="n">ListFragment</span> <span class="o">{</span>
+    <span class="n">FormSaveListener</span> <span class="n">formSaveListener</span><span class="o">;</span>
+    <span class="n">ValidationListener</span> <span class="n">validator</span><span class="o">;</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="n">View</span> <span class="nf">onCreateView</span><span class="o">(</span><span class="n">LayoutInflater</span> <span class="n">inflater</span><span class="o">,</span> <span class="n">ViewGroup</span> <span class="n">container</span><span class="o">,</span>
+                             <span class="n">Bundle</span> <span class="n">savedInstanceState</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">View</span> <span class="n">editText</span> <span class="o">=</span> <span class="n">inflater</span><span class="o">.</span><span class="na">inflate</span><span class="o">(</span><span class="n">R</span><span class="o">.</span><span class="na">layout</span><span class="o">.</span><span class="na">fragment_a</span><span class="o">,</span> <span class="n">container</span><span class="o">,</span> <span class="kc">false</span><span class="o">);</span>
+
+        <span class="n">validator</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Validator</span><span class="o">(</span><span class="s">&quot;Fragment_A&quot;</span><span class="o">,</span> <span class="n">getActivity</span><span class="o">());</span>
+        <span class="n">formSaveListener</span><span class="o">.</span><span class="na">getValidator</span><span class="o">().</span><span class="na">addValidator</span><span class="o">(</span><span class="n">validator</span><span class="o">);</span>
+
+        <span class="n">setUpValidations</span><span class="o">()</span>
+        <span class="k">return</span> <span class="n">editText</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">onResume</span><span class="o">()</span> <span class="o">{</span>
+        <span class="kd">super</span><span class="o">.</span><span class="na">onResume</span><span class="o">();</span>
+        <span class="n">Button</span> <span class="n">submitBtn</span> <span class="o">=</span> <span class="o">(</span><span class="n">Button</span><span class="o">)</span> <span class="n">editText</span><span class="o">.</span><span class="na">findViewById</span><span class="o">(</span><span class="n">R</span><span class="o">.</span><span class="na">id</span><span class="o">.</span><span class="na">form_submit_button</span><span class="o">);</span>
+
+        <span class="n">submitBtn</span><span class="o">.</span><span class="na">setOnClickListener</span><span class="o">(</span><span class="k">new</span> <span class="n">View</span><span class="o">.</span><span class="na">OnClickListener</span><span class="o">()</span> <span class="o">{</span>
+            <span class="nd">@Override</span>
+            <span class="kd">public</span> <span class="kt">void</span> <span class="nf">onClick</span><span class="o">(</span><span class="n">View</span> <span class="n">v</span><span class="o">)</span> <span class="o">{</span>
+                <span class="n">formSaveListener</span><span class="o">.</span><span class="na">save</span><span class="o">();</span>
+            <span class="o">}</span>
+        <span class="o">});</span>
+
+    <span class="o">}</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">onAttach</span><span class="o">(</span><span class="n">Context</span> <span class="n">context</span><span class="o">)</span> <span class="o">{</span>
+        <span class="kd">super</span><span class="o">.</span><span class="na">onAttach</span><span class="o">(</span><span class="n">context</span><span class="o">);</span>
+        <span class="k">try</span> <span class="o">{</span>
+            <span class="n">formSaveListener</span> <span class="o">=</span> <span class="o">(</span><span class="n">FormSaveListener</span><span class="o">)</span> <span class="n">context</span><span class="o">;</span>
+        <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">ClassCastException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+            <span class="k">throw</span> <span class="k">new</span> <span class="n">ClassCastException</span><span class="o">(</span><span class="n">context</span><span class="o">.</span><span class="na">toString</span><span class="o">()</span> <span class="o">+</span> <span class="s">&quot; must implement FormSaveListener&quot;</span><span class="o">);</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setUpValidations</span><span class="o">(){</span>
+        <span class="n">EditText</span> <span class="n">nameEditText</span> <span class="o">=</span> <span class="o">(</span><span class="n">EditText</span><span class="o">)</span> <span class="n">editText</span><span class="o">.</span><span class="na">findViewById</span><span class="o">(</span><span class="n">R</span><span class="o">.</span><span class="na">id</span><span class="o">.</span><span class="na">name</span><span class="o">);</span>
+        <span class="n">validator</span><span class="o">.</span><span class="na">setValidation</span><span class="o">(</span><span class="n">nameEditText</span><span class="o">,</span> <span class="n">RegexTemplate</span><span class="o">.</span><span class="na">NOT_EMPTY</span><span class="o">,</span> <span class="s">&quot;name cannot be empty&quot;</span><span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</pre></div>
+</div>
+</div>
+
+
+           </div>
+           <div class="articleComments">
+            
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../../form/index.html" class="btn btn-neutral float-right" title="Welcome to Android Forms documentation!" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="../../com/eddmash/validation/renderer/RendererInterface.html" class="btn btn-neutral" title="RendererInterface" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, Eddilbert Macharia.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../',
+            VERSION:'1.0.0',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

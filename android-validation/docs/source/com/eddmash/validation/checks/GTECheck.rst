@@ -19,25 +19,25 @@ Constructors
 GTECheck
 ^^^^^^^^
 
-.. java:constructor:: public GTECheck(EditText view, String errorMessage, int max)
+.. java:constructor:: public GTECheck(EditText editText, String errorMessage, int max)
    :outertype: GTECheck
 
 GTECheck
 ^^^^^^^^
 
-.. java:constructor:: public GTECheck(Spinner view, String errorMessage, int max)
+.. java:constructor:: public GTECheck(Spinner editText, String errorMessage, int max)
    :outertype: GTECheck
 
 GTECheck
 ^^^^^^^^
 
-.. java:constructor:: public GTECheck(EditText view, String errorMessage, double max)
+.. java:constructor:: public GTECheck(EditText editText, String errorMessage, double max)
    :outertype: GTECheck
 
 GTECheck
 ^^^^^^^^
 
-.. java:constructor:: public GTECheck(Spinner view, String errorMessage, double max)
+.. java:constructor:: public GTECheck(Spinner editText, String errorMessage, double max)
    :outertype: GTECheck
 
 Methods

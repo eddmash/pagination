@@ -14,6 +14,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * An implimentation of {@link PaginatorInterface}
+ */
 public class ListPaginator extends Paginator {
 
     private List<Map> _records = new ArrayList<>();
@@ -29,7 +32,7 @@ public class ListPaginator extends Paginator {
         _totalRecords = _records.size();
         _currentRecordsCounter = pageSize;
 
-        new LoadDataTask().execute(0, pageSize);
+        new LoadDataTask(this).execute(0, pageSize);
     }
 
 

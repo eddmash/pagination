@@ -10,6 +10,10 @@ package com.eddmash.validation.renderer;
 
 import android.view.ViewGroup;
 
+/**
+ * Class that implement this interface make it easy to render validation errors
+ * {@link ErrorRenderer}
+ */
 interface RendererInterface {
     void render(ViewGroup errorSpace);
 }

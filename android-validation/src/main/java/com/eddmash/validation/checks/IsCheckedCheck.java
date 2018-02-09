@@ -11,6 +11,11 @@ package com.eddmash.validation.checks;
 import android.widget.CompoundButton;
 import android.widget.TextView;
 
+/**
+ * Checks if the provided compound button is checked.
+ * <p>
+ * Compound buttons include checkbox, radios etc
+ */
 public class IsCheckedCheck implements CheckInterface {
 
     private CompoundButton compoundButton;
@@ -20,6 +25,7 @@ public class IsCheckedCheck implements CheckInterface {
         this.compoundButton = compoundButton;
         this.errorMessage = errorMessage;
     }
+
     public IsCheckedCheck(CompoundButton compoundButton) {
         this(compoundButton, null);
     }

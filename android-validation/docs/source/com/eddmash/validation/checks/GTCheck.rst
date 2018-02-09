@@ -19,25 +19,25 @@ Constructors
 GTCheck
 ^^^^^^^
 
-.. java:constructor:: public GTCheck(EditText view, String errorMessage, int max)
+.. java:constructor:: public GTCheck(EditText editText, String errorMessage, int max)
    :outertype: GTCheck
 
 GTCheck
 ^^^^^^^
 
-.. java:constructor:: public GTCheck(Spinner view, String errorMessage, int max)
+.. java:constructor:: public GTCheck(Spinner editText, String errorMessage, int max)
    :outertype: GTCheck
 
 GTCheck
 ^^^^^^^
 
-.. java:constructor:: public GTCheck(EditText view, String errorMessage, double max)
+.. java:constructor:: public GTCheck(EditText editText, String errorMessage, double max)
    :outertype: GTCheck
 
 GTCheck
 ^^^^^^^
 
-.. java:constructor:: public GTCheck(Spinner view, String errorMessage, double max)
+.. java:constructor:: public GTCheck(Spinner editText, String errorMessage, double max)
    :outertype: GTCheck
 
 Methods

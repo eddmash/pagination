@@ -1,0 +1,428 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Form &mdash; Android Components 1.0.0 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="../../../genindex.html"/>
+        <link rel="search" title="Search" href="../../../search.html"/>
+    <link rel="top" title="Android Components 1.0.0 documentation" href="../../../index.html"/>
+        <link rel="up" title="com.eddmash.form" href="package-index.html"/>
+        <link rel="next" title="FormAwareInterface" href="FormAwareInterface.html"/>
+        <link rel="prev" title="com.eddmash.form" href="package-index.html"/> 
+
+  
+  <script src="../../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../../index.html" class="icon icon-home"> Android Components
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.0.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../validation/index.html">Validation Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../form/index.html">Form Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../pagination/index.html">Pagination Documentation</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../../packages.html">Components Api</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../db/package-index.html">com.eddmash.db</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="package-index.html">com.eddmash.form</a><ul class="current">
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Form</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#constructors">Constructors</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#methods">Methods</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="FormAwareInterface.html">FormAwareInterface</a></li>
+<li class="toctree-l3"><a class="reference internal" href="FormException.html">FormException</a></li>
+<li class="toctree-l3"><a class="reference internal" href="FormInterface.html">FormInterface</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="collection/package-index.html">com.eddmash.form.collection</a></li>
+<li class="toctree-l2"><a class="reference internal" href="faker/package-index.html">com.eddmash.form.faker</a></li>
+<li class="toctree-l2"><a class="reference internal" href="faker/provider/package-index.html">com.eddmash.form.faker.provider</a></li>
+<li class="toctree-l2"><a class="reference internal" href="fields/package-index.html">com.eddmash.form.fields</a></li>
+<li class="toctree-l2"><a class="reference internal" href="values/package-index.html">com.eddmash.form.values</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../pagination/package-index.html">com.eddmash.pagination</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../validation/package-index.html">com.eddmash.validation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../validation/checks/package-index.html">com.eddmash.validation.checks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../validation/renderer/package-index.html">com.eddmash.validation.renderer</a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">Android Components</a>
+        
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../../../packages.html">Javadoc</a> &raquo;</li>
+        
+          <li><a href="package-index.html">com.eddmash.form</a> &raquo;</li>
+        
+      <li>Form</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../../../_sources/com/eddmash/form/Form.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="form">
+<h1>Form<a class="headerlink" href="#form" title="Permalink to this headline">¶</a></h1>
+<dl class="type">
+<dt id="com.eddmash.form.Form">
+public abstract class <code class="descname">Form</code> implements <a class="reference internal" href="FormInterface.html#com.eddmash.form.FormInterface" title="com.eddmash.form.FormInterface">FormInterface</a><a class="headerlink" href="#com.eddmash.form.Form" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<div class="section" id="constructors">
+<h2>Constructors<a class="headerlink" href="#constructors" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id1">
+<h3>Form<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
+<dl class="constructor">
+<dt id="com.eddmash.form.Form.Form()">
+public <code class="descname">Form</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#com.eddmash.form.Form.Form()" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="id2">
+<h3>Form<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
+<dl class="constructor">
+<dt id="com.eddmash.form.Form.Form(ValidatorInterface)">
+public <code class="descname">Form</code><span class="sig-paren">(</span><a class="reference internal" href="../validation/ValidatorInterface.html#com.eddmash.validation.ValidatorInterface" title="com.eddmash.validation.ValidatorInterface">ValidatorInterface</a><em> validator</em><span class="sig-paren">)</span><a class="headerlink" href="#com.eddmash.form.Form.Form(ValidatorInterface)" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+</div>
+<div class="section" id="methods">
+<h2>Methods<a class="headerlink" href="#methods" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="addcheck">
+<h3>addCheck<a class="headerlink" href="#addcheck" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="com.eddmash.form.Form.addCheck(CheckInterface)">
+public void <code class="descname">addCheck</code><span class="sig-paren">(</span><a class="reference internal" href="../validation/checks/CheckInterface.html#com.eddmash.validation.checks.CheckInterface" title="com.eddmash.validation.checks.CheckInterface">CheckInterface</a><em> check</em><span class="sig-paren">)</span><a class="headerlink" href="#com.eddmash.form.Form.addCheck(CheckInterface)" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="addfield">
+<h3>addField<a class="headerlink" href="#addfield" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="com.eddmash.form.Form.addField(String, View)">
+public void <code class="descname">addField</code><span class="sig-paren">(</span><a class="reference external" href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html" title="java.lang.String">String</a><em> colName</em>, View<em> view</em><span class="sig-paren">)</span><a class="headerlink" href="#com.eddmash.form.Form.addField(String, View)" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="id3">
+<h3>addField<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="com.eddmash.form.Form.addField(FieldInterface)">
+public void <code class="descname">addField</code><span class="sig-paren">(</span><a class="reference internal" href="fields/FieldInterface.html#com.eddmash.form.fields.FieldInterface" title="com.eddmash.form.fields.FieldInterface">FieldInterface</a><em> field</em><span class="sig-paren">)</span><a class="headerlink" href="#com.eddmash.form.Form.addField(FieldInterface)" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="disablecheck">
+<h3>disableCheck<a class="headerlink" href="#disablecheck" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="com.eddmash.form.Form.disableCheck(CheckInterface)">
+public void <code class="descname">disableCheck</code><span class="sig-paren">(</span><a class="reference internal" href="../validation/checks/CheckInterface.html#com.eddmash.validation.checks.CheckInterface" title="com.eddmash.validation.checks.CheckInterface">CheckInterface</a><em> check</em><span class="sig-paren">)</span><a class="headerlink" href="#com.eddmash.form.Form.disableCheck(CheckInterface)" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="geterrors">
+<h3>getErrors<a class="headerlink" href="#geterrors" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="com.eddmash.form.Form.getErrors()">
+public <a class="reference external" href="http://docs.oracle.com/javase/8/docs/api/java/util/Map.html" title="java.util.Map">Map</a>&lt;<a class="reference external" href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html" title="java.lang.String">String</a>, <a class="reference external" href="http://docs.oracle.com/javase/8/docs/api/java/util/List.html" title="java.util.List">List</a>&gt; <code class="descname">getErrors</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#com.eddmash.form.Form.getErrors()" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="getfield">
+<h3>getField<a class="headerlink" href="#getfield" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="com.eddmash.form.Form.getField(String)">
+public <a class="reference internal" href="fields/FieldInterface.html#com.eddmash.form.fields.FieldInterface" title="com.eddmash.form.fields.FieldInterface">FieldInterface</a> <code class="descname">getField</code><span class="sig-paren">(</span><a class="reference external" href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html" title="java.lang.String">String</a><em> fieldName</em><span class="sig-paren">)</span><a class="headerlink" href="#com.eddmash.form.Form.getField(String)" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="getfields">
+<h3>getFields<a class="headerlink" href="#getfields" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="com.eddmash.form.Form.getFields()">
+public <a class="reference external" href="http://docs.oracle.com/javase/8/docs/api/java/util/Map.html" title="java.util.Map">Map</a>&lt;<a class="reference external" href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html" title="java.lang.String">String</a>, <a class="reference internal" href="fields/FieldInterface.html#com.eddmash.form.fields.FieldInterface" title="com.eddmash.form.fields.FieldInterface">FieldInterface</a>&gt; <code class="descname">getFields</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#com.eddmash.form.Form.getFields()" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="getidentifier">
+<h3>getIdentifier<a class="headerlink" href="#getidentifier" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="com.eddmash.form.Form.getIdentifier()">
+public <a class="reference external" href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html" title="java.lang.String">String</a> <code class="descname">getIdentifier</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#com.eddmash.form.Form.getIdentifier()" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="getvalidator">
+<h3>getValidator<a class="headerlink" href="#getvalidator" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="com.eddmash.form.Form.getValidator()">
+public <a class="reference internal" href="../validation/ValidatorInterface.html#com.eddmash.validation.ValidatorInterface" title="com.eddmash.validation.ValidatorInterface">ValidatorInterface</a> <code class="descname">getValidator</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#com.eddmash.form.Form.getValidator()" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="getvalue">
+<h3>getValue<a class="headerlink" href="#getvalue" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="com.eddmash.form.Form.getValue(String)">
+public <a class="reference external" href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html" title="java.lang.Object">Object</a> <code class="descname">getValue</code><span class="sig-paren">(</span><a class="reference external" href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html" title="java.lang.String">String</a><em> fieldName</em><span class="sig-paren">)</span><a class="headerlink" href="#com.eddmash.form.Form.getValue(String)" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="getvalues">
+<h3>getValues<a class="headerlink" href="#getvalues" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="com.eddmash.form.Form.getValues()">
+public <a class="reference external" href="http://docs.oracle.com/javase/8/docs/api/java/util/Map.html" title="java.util.Map">Map</a>&lt;<a class="reference external" href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html" title="java.lang.String">String</a>, <a class="reference external" href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html" title="java.lang.Object">Object</a>&gt; <code class="descname">getValues</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#com.eddmash.form.Form.getValues()" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="isvalid">
+<h3>isValid<a class="headerlink" href="#isvalid" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="com.eddmash.form.Form.isValid()">
+public boolean <code class="descname">isValid</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#com.eddmash.form.Form.isValid()" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="removefield">
+<h3>removeField<a class="headerlink" href="#removefield" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="com.eddmash.form.Form.removeField(String)">
+public void <code class="descname">removeField</code><span class="sig-paren">(</span><a class="reference external" href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html" title="java.lang.String">String</a><em> colName</em><span class="sig-paren">)</span><a class="headerlink" href="#com.eddmash.form.Form.removeField(String)" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="id4">
+<h3>removeField<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="com.eddmash.form.Form.removeField(FieldInterface)">
+public void <code class="descname">removeField</code><span class="sig-paren">(</span><a class="reference internal" href="fields/FieldInterface.html#com.eddmash.form.fields.FieldInterface" title="com.eddmash.form.fields.FieldInterface">FieldInterface</a><em> field</em><span class="sig-paren">)</span><a class="headerlink" href="#com.eddmash.form.Form.removeField(FieldInterface)" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="setdata">
+<h3>setData<a class="headerlink" href="#setdata" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="com.eddmash.form.Form.setData(Map)">
+public void <code class="descname">setData</code><span class="sig-paren">(</span><a class="reference external" href="http://docs.oracle.com/javase/8/docs/api/java/util/Map.html" title="java.util.Map">Map</a><em> data</em><span class="sig-paren">)</span><a class="headerlink" href="#com.eddmash.form.Form.setData(Map)" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="setvalue">
+<h3>setValue<a class="headerlink" href="#setvalue" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="com.eddmash.form.Form.setValue(String, Object)">
+public void <code class="descname">setValue</code><span class="sig-paren">(</span><a class="reference external" href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html" title="java.lang.String">String</a><em> fieldName</em>, <a class="reference external" href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html" title="java.lang.Object">Object</a><em> value</em><span class="sig-paren">)</span><a class="headerlink" href="#com.eddmash.form.Form.setValue(String, Object)" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="validate">
+<h3>validate<a class="headerlink" href="#validate" title="Permalink to this headline">¶</a></h3>
+<dl class="method">
+<dt id="com.eddmash.form.Form.validate()">
+public void <code class="descname">validate</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#com.eddmash.form.Form.validate()" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+</div>
+</div>
+
+
+           </div>
+           <div class="articleComments">
+            
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="FormAwareInterface.html" class="btn btn-neutral float-right" title="FormAwareInterface" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="package-index.html" class="btn btn-neutral" title="com.eddmash.form" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, Eddilbert Macharia.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../../',
+            VERSION:'1.0.0',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../../_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

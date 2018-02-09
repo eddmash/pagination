@@ -9,7 +9,7 @@ package com.eddmash.validation;
 */
 
 /**
- * Interface definition for callbacks to be invoked when the validation state has changed.
+ * Interface definition of callbacks to be invoked when the validation state has changed.
  */
 public interface ValidationListener {
 

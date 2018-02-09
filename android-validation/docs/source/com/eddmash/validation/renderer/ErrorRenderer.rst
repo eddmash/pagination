@@ -4,9 +4,9 @@
 
 .. java:import:: android.graphics Typeface
 
-.. java:import:: android.view View
+.. java:import:: android.editText View
 
-.. java:import:: android.view ViewGroup
+.. java:import:: android.editText ViewGroup
 
 .. java:import:: android.widget GridLayout
 

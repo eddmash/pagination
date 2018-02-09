@@ -1,4 +1,4 @@
-.. java:import:: android.view ViewGroup
+.. java:import:: android.editText ViewGroup
 
 RendererInterface
 =================

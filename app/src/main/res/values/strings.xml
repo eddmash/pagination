@@ -6,4 +6,5 @@
     <string name="save_btn">Save</string>
     <string name="not_blank">%s cannot be blank</string>
     <string name="basicformexample">Basic form example</string>
+    <string name="acceptterms">Accept terms</string>
 </resources>

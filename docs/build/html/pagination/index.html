@@ -1,0 +1,319 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Pagination Documentation &mdash; Android Components 1.0.0 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="../genindex.html"/>
+        <link rel="search" title="Search" href="../search.html"/>
+    <link rel="top" title="Android Components 1.0.0 documentation" href="../index.html"/>
+        <link rel="next" title="Javadoc" href="../packages.html"/>
+        <link rel="prev" title="Faker Provider" href="../form/faker_providers.html"/> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> Android Components
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.0.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../validation/index.html">Validation Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../form/index.html">Form Documentation</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Pagination Documentation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#paginate-data-from-a-list">Paginate data from a List</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#paginate-data-from-database">Paginate data from database</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#create-a-datalistener">Create a DataListener</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../packages.html">Components Api</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Android Components</a>
+        
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+      <li>Pagination Documentation</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/pagination/index.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="pagination-documentation">
+<h1>Pagination Documentation<a class="headerlink" href="#pagination-documentation" title="Permalink to this headline">¶</a></h1>
+<p>This pagination library makes it easy to deal with paginating large set of data in a consistent way.</p>
+<p>The paginators use <a class="reference internal" href="../com/eddmash/pagination/DataListener.html#com.eddmash.pagination.DataListener" title="com.eddmash.pagination.DataListener"><code class="xref java java-ref docutils literal"><span class="pre">DataListener</span></code></a> to notify you of any changes that
+happen e.g</p>
+<p>If data for first page is ready for use the
+<a class="reference internal" href="../com/eddmash/pagination/DataListener.html#com.eddmash.pagination.DataListener.onFirstPageDataLoaded(boolean)" title="com.eddmash.pagination.DataListener.onFirstPageDataLoaded(boolean)"><code class="xref java java-ref docutils literal"><span class="pre">DataListener</span></code></a></p>
+<div class="section" id="paginate-data-from-a-list">
+<h2>Paginate data from a List<a class="headerlink" href="#paginate-data-from-a-list" title="Permalink to this headline">¶</a></h2>
+<p>To paginate a list of records we need to use <a class="reference internal" href="../com/eddmash/pagination/ListPaginator.html#com.eddmash.pagination.ListPaginator" title="com.eddmash.pagination.ListPaginator"><code class="xref java java-ref docutils literal"><span class="pre">ListPaginator</span></code></a>.</p>
+<div class="highlight-java"><div class="highlight"><pre><span></span><span class="n">List</span> <span class="n">data</span> <span class="o">=</span> <span class="s">&quot;...&quot;</span>
+<span class="n">MyDataListener</span> <span class="n">datalisterner</span> <span class="o">=</span> <span class="k">new</span> <span class="n">MyDataListener</span><span class="o">();</span>
+
+<span class="n">ListPaginator</span> <span class="n">pager</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ListPaginator</span><span class="o">(</span><span class="n">datalisterner</span><span class="o">);</span>
+<span class="n">pager</span><span class="o">.</span><span class="na">setData</span><span class="o">(</span><span class="n">data</span><span class="o">);</span>
+<span class="c1">// set Page size</span>
+<span class="n">pager</span><span class="o">.</span><span class="na">setPageSize</span><span class="o">(</span><span class="mi">20</span><span class="o">);</span>
+
+<span class="c1">// invoke this method to trigger fetching of next page of data</span>
+<span class="n">pager</span><span class="o">.</span><span class="na">fetchNextPageData</span><span class="o">();</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="paginate-data-from-database">
+<h2>Paginate data from database<a class="headerlink" href="#paginate-data-from-database" title="Permalink to this headline">¶</a></h2>
+<p>To fetch data from the database we need to use <a class="reference internal" href="../com/eddmash/pagination/SqlPaginator.html#com.eddmash.pagination.SqlPaginator" title="com.eddmash.pagination.SqlPaginator"><code class="xref java java-ref docutils literal"><span class="pre">SqlPaginator</span></code></a>.</p>
+<div class="highlight-java"><div class="highlight"><pre><span></span><span class="c1">// get and instance SQLiteDatabase</span>
+<span class="n">SQLiteDatabase</span> <span class="n">db</span> <span class="o">=</span> <span class="s">&quot;...&quot;</span><span class="o">;</span>
+
+<span class="n">MyDataListener</span> <span class="n">datalisterner</span> <span class="o">=</span> <span class="k">new</span> <span class="n">MyDataListener</span><span class="o">();</span>
+
+<span class="n">SqlPaginator</span> <span class="n">pager</span> <span class="o">=</span> <span class="k">new</span> <span class="n">SqlPaginator</span><span class="o">(</span><span class="n">datalisterner</span><span class="o">,</span> <span class="n">db</span><span class="o">);</span>
+<span class="c1">// set Page size</span>
+<span class="n">pager</span><span class="o">.</span><span class="na">setPageSize</span><span class="o">(</span><span class="mi">20</span><span class="o">);</span>
+
+<span class="c1">// pass in the sql the paginator will use to fetch data</span>
+<span class="n">String</span> <span class="n">sql</span> <span class="o">=</span> <span class="s">&quot;select * from employee where paid_date = ?&quot;</span><span class="o">;</span>
+<span class="n">String</span><span class="o">[]</span> <span class="o">=</span> <span class="k">new</span> <span class="n">String</span><span class="o">[]{</span><span class="s">&quot;1-12-2018&quot;</span><span class="o">};</span>
+<span class="n">pager</span><span class="o">.</span><span class="na">query</span><span class="o">(</span><span class="n">sql</span><span class="o">,</span> <span class="n">params</span><span class="o">);</span>
+
+<span class="c1">// invoke this method to trigger fetching of next page of data</span>
+<span class="n">pager</span><span class="o">.</span><span class="na">fetchNextPageData</span><span class="o">();</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="create-a-datalistener">
+<h2>Create a DataListener<a class="headerlink" href="#create-a-datalistener" title="Permalink to this headline">¶</a></h2>
+<p>A <a class="reference internal" href="../com/eddmash/pagination/PaginatorInterface.html#com.eddmash.pagination.PaginatorInterface" title="com.eddmash.pagination.PaginatorInterface"><code class="xref java java-ref docutils literal"><span class="pre">Paginator</span></code></a> requires a <a class="reference internal" href="../com/eddmash/pagination/DataListener.html#com.eddmash.pagination.DataListener" title="com.eddmash.pagination.DataListener"><code class="xref java java-ref docutils literal"><span class="pre">DataListener</span></code></a></p>
+<p>Create a DataListener this by implementing the <a class="reference internal" href="../com/eddmash/pagination/DataListener.html#com.eddmash.pagination.DataListener" title="com.eddmash.pagination.DataListener"><code class="xref java java-ref docutils literal"><span class="pre">DataListener</span></code></a> interface.</p>
+<div class="highlight-java"><div class="highlight"><pre><span></span><span class="kd">public</span> <span class="kd">class</span> <span class="nc">MyDataListener</span> <span class="kd">implements</span> <span class="n">DataListener</span> <span class="o">{</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">onFirstPageDataLoaded</span><span class="o">(</span><span class="kt">boolean</span> <span class="n">hasMorePages</span><span class="o">)</span> <span class="o">{</span>
+
+    <span class="o">}</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">onLastPageDataLoaded</span><span class="o">()</span> <span class="o">{</span>
+
+    <span class="o">}</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">onNextPageDataLoaded</span><span class="o">()</span> <span class="o">{</span>
+
+    <span class="o">}</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">preDataLoad</span><span class="o">(</span><span class="kt">boolean</span> <span class="n">hasMorePages</span><span class="o">)</span> <span class="o">{</span>
+
+    <span class="o">}</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">dataUpdate</span><span class="o">(</span><span class="n">List</span><span class="o">&lt;</span><span class="n">Map</span><span class="o">&gt;</span> <span class="n">records</span><span class="o">)</span> <span class="o">{</span>
+
+    <span class="o">}</span>
+<span class="o">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           <div class="articleComments">
+            
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../packages.html" class="btn btn-neutral float-right" title="Javadoc" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="../form/faker_providers.html" class="btn btn-neutral" title="Faker Provider" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, Eddilbert Macharia.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'1.0.0',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

@@ -17,7 +17,7 @@ Constructors
 IsFloatCheck
 ^^^^^^^^^^^^
 
-.. java:constructor:: public IsFloatCheck(EditText view, String errorMessage)
+.. java:constructor:: public IsFloatCheck(EditText editText, String errorMessage)
    :outertype: IsFloatCheck
 
 IsFloatCheck

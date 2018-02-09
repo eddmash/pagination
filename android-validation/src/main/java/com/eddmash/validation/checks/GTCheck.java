@@ -13,7 +13,7 @@ import android.widget.EditText;
 import android.widget.Spinner;
 
 /**
- * Greater than
+ * Check if the value on the view is greater than the provided value.
  */
 public class GTCheck extends NotEmptyCheck {
     private double max;

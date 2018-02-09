@@ -11,11 +11,13 @@ package com.eddmash.validation.checks;
 import android.util.Log;
 import android.widget.EditText;
 
+import java.util.Objects;
+
 /**
- * Equal to
+ * Checks if the provided values is matches to what view has.
  */
 public class EqualCheck extends NotEmptyCheck {
-    private double valToEquate;
+    private Object valToEquate;
 
     public EqualCheck(EditText view, String errorMessage, int valToEquate) {
         super(view, errorMessage);
@@ -27,15 +29,26 @@ public class EqualCheck extends NotEmptyCheck {
         this.valToEquate = valToEquate;
     }
 
+    public EqualCheck(EditText view, String errorMessage, String valToEquate) {
+        super(view, errorMessage);
+        this.valToEquate = valToEquate;
+    }
+
     @Override
     public boolean run() {
         boolean status = super.run();
         if (status) {
             try {
-                Double value = Double.valueOf(getValue());
+                if (valToEquate instanceof String) {
+                    return String.valueOf(valToEquate).toLowerCase().equals(
+                            getValue().toLowerCase());
+                } else  {
 
-                if (value == valToEquate) {
-                    return false;
+                    Double value = Double.valueOf(getValue());
+
+                    if (value.equals(valToEquate)) {
+                        return false;
+                    }
                 }
             } catch (Exception e) {
                 Log.e(getClass().getName(), "ERROR :: " + e.getMessage());

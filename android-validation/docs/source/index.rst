@@ -40,9 +40,9 @@ Using this library boils down to this steps
 
 .. code-block:: java
 
-    // the view objects to validate
-    EditText nameEditText = (EditText) view.findViewById(R.id.name);
-    Spinner ageSpinner = (Spinner) view.findViewById(R.id.spinner);
+    // the editText objects to validate
+    EditText nameEditText = (EditText) editText.findViewById(R.id.name);
+    Spinner ageSpinner = (Spinner) editText.findViewById(R.id.spinner);
 
     // ... using check objects
     validator.addCheck(new NotEmptyCheck(nameEditText, "name cannot be blank");

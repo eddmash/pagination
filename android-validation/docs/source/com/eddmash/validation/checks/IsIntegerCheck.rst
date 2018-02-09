@@ -17,7 +17,7 @@ Constructors
 IsIntegerCheck
 ^^^^^^^^^^^^^^
 
-.. java:constructor:: public IsIntegerCheck(EditText view, String errorMessage)
+.. java:constructor:: public IsIntegerCheck(EditText editText, String errorMessage)
    :outertype: IsIntegerCheck
 
 IsIntegerCheck
