@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <declare-styleable name="DataGridView">
+        <attr name="headerColor" format="color" />
+        <attr name="stripColor" format="color" />
+        <attr name="isStrip" format="boolean" />
+        <attr name="pageSize" format="integer" />
+    </declare-styleable>
+    <item name="checkboxid" type="id">your id name</item>
+</resources>
