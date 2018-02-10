@@ -3,6 +3,8 @@ Pagination Documentation
 
 This pagination library makes it easy to deal with paginating large set of data in a consistent way.
 
+.. image:: pagination.png
+
 The paginators use :java:ref:`DataListener <DataListener>` to notify you of any changes that
 happen e.g
 
@@ -62,27 +64,42 @@ Create a DataListener this by implementing the :java:ref:`DataListener <DataList
     public class MyDataListener implements DataListener {
 
         @Override
-        public void onFirstPageDataLoaded(boolean hasMorePages) {
-
+        public void onLastPageDataLoaded() {
+            // we dont need the load more button if we an on the last page of out data
+            loadMoreBtn.setVisibility(View.GONE);
+            adapter.notifyDataSetChanged();
         }
 
         @Override
-        public void onLastPageDataLoaded() {
-
+        public void onFirstPageDataLoaded(boolean hasMorePages) {
+            // update the load more button
+            nextBtn(hasMorePages);
+            adapter.notifyDataSetChanged();
         }
 
         @Override
         public void onNextPageDataLoaded() {
-
+            adapter.notifyDataSetChanged();
         }
 
-        @Override
-        public void preDataLoad(boolean hasMorePages) {
-
+        void nextBtn(boolean hasMorePages) {
+            String msg = getString(R.string.nextPageBtn) + " " + paginator.getCurrentPageString();
+            loadMoreBtn.setText(msg);
+            if (hasMorePages) {
+                loadMoreBtn.setVisibility(View.VISIBLE);
+            } else {
+                loadMoreBtn.setVisibility(View.GONE);
+            }
         }
 
         @Override
         public void dataUpdate(List<Map> records) {
+            // update the adapter with more data as we get them.
+            adapter.update(records);
+        }
 
+        @Override
+        public void preDataLoad(boolean hasMorePages) {
+            nextBtn(hasMorePages);
         }
     }

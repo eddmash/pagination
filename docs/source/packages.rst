@@ -11,6 +11,8 @@ Javadoc
    com/eddmash/form/faker/provider/package-index
    com/eddmash/form/fields/package-index
    com/eddmash/form/values/package-index
+   com/eddmash/grids/package-index
+   com/eddmash/grids/columns/package-index
    com/eddmash/pagination/package-index
    com/eddmash/validation/package-index
    com/eddmash/validation/checks/package-index

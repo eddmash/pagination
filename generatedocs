@@ -15,7 +15,8 @@ if [ -x "$(command -v javasphinx-apidoc)" ];then
     fi
     if [ -d "$sourcedir" ]; then
         javasphinx-apidoc -vo $sourcedir -f android-activerecord/src/main -I android-form/src/main\
-        -I android-validation/src/main -I android-pagination/src/main
+        -I android-validation/src/main -I android-pagination/src/main\
+         -I android-grids/src/main
         cd $docsdir
         echo "Changed direcoty ... $PWD"
         make clean

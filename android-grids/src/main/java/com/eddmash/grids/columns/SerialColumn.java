@@ -14,21 +14,23 @@ import android.widget.TextView;
 
 import java.util.Map;
 
-public class SerialColumn extends DataColumn {
+public class SerialColumn extends Column {
     public SerialColumn(Context context, String name) {
         super(context, name, name);
     }
 
     @Override
-    public View makeView(int index, Map datum) {
-        TextView view = (TextView) super.makeView(index, datum);
-        view.setText(index + "");
-        return view;
+    public View getDataView(int index, Map datum) {
+        TextView view = new TextView(getContext());
+        view.setText(String.valueOf(index));
+        return prepareDataView(view, .2f);
     }
 
     @Override
-    public double getWeight() {
-        return .4;
+    public View getLabelView() {
+        TextView view = new TextView(getContext());
+        view.setText(String.valueOf(name));
+        return prepareHeaderView(view, .2f);
     }
 
     @Override

@@ -15,7 +15,7 @@
         android:layout_height="wrap_content"
         android:text="@string/grid_example_title" />
 
-    <com.eddmash.grids.DataView
+    <com.eddmash.grids.DataGridView
         android:id="@+id/content_dsp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

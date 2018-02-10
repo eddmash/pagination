@@ -18,6 +18,7 @@ Documentation for android components
    Validation Documentation <validation/index>
    Form Documentation <form/index>
    Pagination Documentation <pagination/index>
+   Grid Documentation <grid/index>
    Components Api <packages>
 
 Indices and tables

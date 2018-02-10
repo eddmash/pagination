@@ -14,7 +14,11 @@ import android.widget.Button;
 
 import java.util.Map;
 
-public abstract class ActionColumn extends DataColumn {
+/**
+ * ActionColumn displays action buttons such as update or delete for each row.
+ * find more at {@link ColumnInterface}
+ */
+public abstract class ActionColumn extends Column {
     private Button view;
     private String name;
 
@@ -23,7 +27,8 @@ public abstract class ActionColumn extends DataColumn {
         this.name = name;
     }
 
-    public View makeView(int position, final Map datum) {
+    @Override
+    public View getDataView(int position, final Map datum) {
         view = new Button(getContext());
         view.setText(name);
 
@@ -35,15 +40,17 @@ public abstract class ActionColumn extends DataColumn {
             }
         });
 
-        return view;
+        return prepareDataView(view, .2f);
     }
 
+    /**
+     * Action that will be taken when a
+     * {@link ColumnInterface#getDataView(int, Map)} is clicked.
+     *
+     * @param v
+     * @param datum
+     */
     protected abstract void onItemClick(View v, Map datum);
-
-    @Override
-    public double getWeight() {
-        return .5;
-    }
 
     @Override
     public View getSearchView() {

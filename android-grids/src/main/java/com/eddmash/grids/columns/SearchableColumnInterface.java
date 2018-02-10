@@ -10,6 +10,7 @@ package com.eddmash.grids.columns;
 
 import android.view.View;
 
+
 public interface SearchableColumnInterface {
     public View getSearchView();
 }

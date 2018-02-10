@@ -1,8 +1,4 @@
 
-A lightweight and extensible android validation library.
-
-It uses simple, straightforward validation methods with a focus on readable and concise syntax.
-
 Installation
 ************
 

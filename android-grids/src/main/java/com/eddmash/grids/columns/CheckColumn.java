@@ -21,7 +21,13 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-public class CheckColumn extends Column {
+/**
+ * This renders a column of checkable columns which can be used to performa a
+ * check all or check some required fields.
+ * <p>
+ * learn more about {@link ColumnInterface Columns}
+ */
+public class CheckColumn extends BaseColumn {
     private final String name;
     private CheckBox view;
     private List<CheckBox> checked;
@@ -37,43 +43,42 @@ public class CheckColumn extends Column {
     }
 
     @Override
-    public View makeView(int index, Map datum) {
+    public View getDataView(int index, Map datum) {
         view = new CheckBox(getContext());
         view.setTag(datum);
         view.setId(R.id.checkboxid);
-        view.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if (isChecked) {
-                    checked.add(view);
-                } else {
-                    checked.remove(view);
-                }
-                Log.e("SINGLECHECKED", checked.size() + "");
-            }
-        });
+        view.setOnCheckedChangeListener(
+                new CompoundButton.OnCheckedChangeListener() {
+                    @Override
+                    public void onCheckedChanged(CompoundButton buttonView,
+                                                 boolean isChecked) {
+                        if (isChecked) {
+                            checked.add(view);
+                        } else {
+                            checked.remove(view);
+                        }
+                        Log.e("SINGLECHECKED", checked.size() + "");
+                    }
+                });
         return view;
     }
 
     @Override
-    public double getWeight() {
-        return 0.5;
-    }
-
-    @Override
-    public View getHeader() {
+    public View getLabelView() {
         CheckBox header = new CheckBox(getContext());
 
         if (name != null) {
             header.setText(name);
         }
-        header.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                Log.e("CHECKED", "checekd");
-                selectDeselectAll(isChecked);
-            }
-        });
+        header.setOnCheckedChangeListener(
+                new CompoundButton.OnCheckedChangeListener() {
+                    @Override
+                    public void onCheckedChanged(CompoundButton buttonView,
+                                                 boolean isChecked) {
+                        Log.e("CHECKED", "checekd");
+                        selectDeselectAll(isChecked);
+                    }
+                });
         return header;
     }
 
@@ -98,10 +103,14 @@ public class CheckColumn extends Column {
         ((Activity) getContext()).runOnUiThread(new Runnable() {
             @Override
             public void run() {
-                if (dataView != null) {
-                    for (int i = 0; i < dataView.getContentLayout().getChildCount(); i++) {
-                        View view = dataView.getContentLayout().getChildAt(i);
-                        CheckBox checkbox = (CheckBox) view.findViewById(R.id.checkboxid);
+                if (dataGridView != null) {
+                    for (int i = 0;
+                         i < dataGridView.getContentLayout().getChildCount();
+                         i++) {
+                        View view = dataGridView.getContentLayout()
+                                                .getChildAt(i);
+                        CheckBox checkbox = (CheckBox) view
+                                .findViewById(R.id.checkboxid);
                         if (checkbox != null) {
                             checkbox.setChecked(isChecked);
                         }

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <declare-styleable name="DataView">
+    <declare-styleable name="DataGridView">
         <attr name="headerColor" format="color" />
         <attr name="stripColor" format="color" />
         <attr name="isStrip" format="boolean" />

@@ -24,6 +24,7 @@ in handy when you want to prepopulate you form with sample data.
 
 For validation the `Validation <http://android-validation-library.readthedocs.io>`_ is used.
 
+.. image:: basicform.png
 
 .. toctree::
     :titlesonly:

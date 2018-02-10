@@ -9,26 +9,51 @@ package com.eddmash.grids.columns;
 */
 
 import android.content.Context;
+import android.support.v4.content.ContextCompat;
+import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
+import android.view.View;
+import android.widget.EditText;
+import android.widget.TextView;
 
-import com.eddmash.grids.DataView;
+import java.util.Map;
 
-public abstract class Column implements ColumnInterface {
+/**
+ * A column that displays data on the grid. this is an implementation of
+ * {@link ColumnInterface}
+ */
+public class Column extends BaseColumn implements SearchableColumnInterface {
 
-    private Context context;
-    protected DataView dataView;
+    protected final String name;
+    protected final Object header;
 
-    public Column(Context context) {
-        this.context = context;
+    public Column(Context context, String valueKey, Object labelText) {
+        super(context);
+        this.name = valueKey;
+        this.header = labelText;
     }
 
     @Override
-    public Context getContext() {
-        return context;
+    public View getDataView(int index, Map datum) {
+        TextView view = new TextView(getContext());
+        view.setText(String.valueOf(datum.get(name)));
+
+        return prepareDataView(view, 1);
     }
 
     @Override
-    public void setDisplayView(DataView dataView) {
+    public View getLabelView() {
+        TextView view = new TextView(getContext());
 
-        this.dataView = dataView;
+        Log.e(getClass().getSimpleName(), " HEADER " + header);
+        view.setText(String.valueOf(header));
+        return prepareHeaderView(view, 1);
     }
+
+
+    @Override
+    public View getSearchView() {
+        return new EditText(getContext());
+    }
+
 }
