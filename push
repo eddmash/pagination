@@ -1,8 +1,0 @@
-#! /bin/bash
-
-git push origin master
-
-git subtree push --prefix=android-form/ formorigin master
-git subtree push --prefix=android-adapter/ adapterorigin master
-git subtree push --prefix=android-views/ vieworigin master
-git subtree push --prefix=android-grid/ gridorigin master
