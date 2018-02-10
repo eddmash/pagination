@@ -50,10 +50,7 @@ dependencies {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
     compile 'com.eddmash:activerecord:1.0.2'
-<<<<<<< HEAD
-=======
     compile 'com.android.support:appcompat-v7:25.4.0'
->>>>>>> ba60ea898329a37e1428f95f56d91c77d17e7184
     testCompile 'junit:junit:4.12'
 }
 
