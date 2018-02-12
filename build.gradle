@@ -3,39 +3,15 @@ apply plugin: 'com.android.library'
 apply plugin: 'android-maven'
 
 group='com.github.eddmash.androidcomponents'
-ext {
-    versionCode = 8
-    bintrayRepo = 'maven'
-    bintrayName = 'pagination'
-
-    publishedGroupId = 'com.eddmash'
-    libraryName = 'pagination'
-    artifact = 'pagination'
-
-    libraryDescription = 'A collection of classes that assist with data pagination.'
-
-    siteUrl = 'https://github.com/eddmash/pagination'
-    gitUrl = 'https://github.com/eddmash/pagination.git'
-
-    libraryVersion = "1.0.${versionCode}"
-
-    developerId = 'eddmash'
-    developerName = 'Eddilbert Macharia'
-    developerEmail = 'edd.cowan@gmail.com'
-
-    licenseName = 'The Apache Software License, Version 2.0'
-    licenseUrl = 'http://www.apache.org/licenses/LICENSE-2.0.txt'
-    allLicenses = ["Apache-2.0"]
-}
 
 android {
-    compileSdkVersion 25
+    compileSdkVersion project.ext.compileSdkVersion
 
     defaultConfig {
-        minSdkVersion 14
-        targetSdkVersion 25
-        versionCode project.versionCode
-        versionName "${libraryVersion}"
+        minSdkVersion project.ext.minSdkVersion
+        targetSdkVersion project.ext.targetSdkVersion
+        versionCode project.ext.versionCode
+        versionName "${project.ext.versionName}"
 
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
@@ -53,7 +29,7 @@ dependencies {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
     implementation project(':activerecord')
-    compile 'com.android.support:appcompat-v7:25.4.0'
+    implementation project.ext.supportDependencies.appCompat
     testCompile 'junit:junit:4.12'
 }
 
