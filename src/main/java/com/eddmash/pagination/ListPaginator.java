@@ -1,6 +1,6 @@
 package com.eddmash.pagination;
 /*
-* This file is part of the com.eddmash.pagination package.
+* This file is part of the androidcomponents package.
 * 
 * (c) Eddilbert Macharia (http://eddmash.com)<edd.cowan@gmail.com>
 *
