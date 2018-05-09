@@ -1,12 +1,12 @@
 package com.eddmash.pagination;
 /*
-* This file is part of the androidcomponents package.
-* 
-* (c) Eddilbert Macharia (http://eddmash.com)<edd.cowan@gmail.com>
-*
-* For the full copyright and license information, please view the LICENSE
-* file that was distributed with this source code.
-*/
+ * This file is part of the androidcomponents package.
+ *
+ * (c) Eddilbert Macharia (http://eddmash.com)<edd.cowan@gmail.com>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
 
 import android.util.Log;
 
@@ -32,7 +32,11 @@ public class ListPaginator extends Paginator {
         _totalRecords = _records.size();
         _currentRecordsCounter = pageSize;
 
-        new LoadDataTask(this).execute(0, pageSize);
+        int _endPoint = pageSize;
+        if (_endPoint > results.size()) {
+            _endPoint = results.size() - 1;
+        }
+        new LoadDataTask(this).execute(0, _endPoint);
     }
 
 
