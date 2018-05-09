@@ -33,8 +33,8 @@ public class ListPaginator extends Paginator {
         _currentRecordsCounter = pageSize;
 
         int _endPoint = pageSize;
-        if (_endPoint > results.size()) {
-            _endPoint = results.size() - 1;
+        if (_endPoint > _totalRecords) {
+            _endPoint = _totalRecords == 0 ? _totalRecords : _totalRecords - 1;
         }
         new LoadDataTask(this).execute(0, _endPoint);
     }
