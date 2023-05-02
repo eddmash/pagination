@@ -1,19 +1,20 @@
 apply plugin: 'com.android.library'
 
-apply plugin: 'android-maven'
+apply plugin: 'maven-publish'
 
 group='com.github.eddmash.androidcomponents'
 
 android {
-    compileSdkVersion project.ext.compileSdkVersion
+    compileSdkVersion 33
 
     defaultConfig {
-        minSdkVersion project.ext.minSdkVersion
-        targetSdkVersion project.ext.targetSdkVersion
-        versionCode project.ext.versionCode
-        versionName "${project.ext.versionName}"
+        minSdkVersion 14
+        targetSdkVersion 33
+        versionCode 2
+        versionName "1.0.2"
 
-        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner 'androidx.test.runner.AndroidJUnitRunner'
+
     }
     buildTypes {
         release {
@@ -23,13 +24,24 @@ android {
     }
 }
 
+buildscript {
+    repositories {
+        google()
+        jcenter()
+        mavenCentral()
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:7.1.3'
+    }
+}
+
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    androidTestImplementation('com.android.support.test.espresso:espresso-core:2.2.2', {
+    androidTestImplementation('androidx.test.espresso:espresso-core:3.1.0', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
-    implementation project(':activerecord')
-    implementation project.ext.supportDependencies.appCompat
+    implementation project(":activerecord")
+    implementation "androidx.sqlite:sqlite:2.3.1"
     testImplementation 'junit:junit:4.12'
 }
 
